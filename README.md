@@ -43,4 +43,4 @@ NOTE: Make sure Frog is running before starting `ngrok`!
     ![Ngrok Example2](docs/images/ngrok2.png)
 
 3. Visit `https://warpcast.com/~/developers/frames`, and input the Forwarding link from the step above. It should look something like this:
-    ![Ngrok Example3](docs/images/ngrok3.png)
+    ![Ngrok Example3](docs/images/ngrok3.png)# rumble-raffle-frame
