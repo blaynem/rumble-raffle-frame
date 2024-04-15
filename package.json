@@ -1,0 +1,24 @@
+{
+  "name": "rumble-raffle-frame",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "frog vercel-build",
+    "dev": "frog dev",
+    "deploy": "vercel"
+  },
+  "dependencies": {
+    "frog": "^0.8.4",
+    "hono": "^4",
+    "pinata-fdk": "^3.7.2",
+    "uuid": "^9.0.1",
+    "viem": "^2.9.16"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@types/uuid": "^9.0.1",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "vercel": "^32.4.1"
+  }
+}
