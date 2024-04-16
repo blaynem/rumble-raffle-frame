@@ -1,23 +1,27 @@
 import { Button, FrameHandler } from "frog";
 import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
-import { Box, Heading, VStack, Text, THEME } from "../utils/ui.js";
+import { Box, Text } from "../utils/ui.js";
+import { BETAHeading } from "../components/BETAHeader.js";
 
-export const baseRouteFrame: FrameHandler = async (frameContext) => {
+const baseRouteFrame: FrameHandler = async (frameContext) => {
   return frameContext.res({
     image: (
       <Box
         grow
-        alignVertical="center"
         alignItems="center"
-        padding="12"
-        color={{ custom: THEME.colors.rumblePrimary }}
-        backgroundColor={{ custom: THEME.colors.rumbleBgDark }}
+        color="rumbleNone"
+        backgroundColor="rumbleBgDark"
       >
-        <VStack>
-          <Heading>Rumble Raffle</Heading>
+        <Box grow alignVertical="center">
+          <BETAHeading />
           <Text>Will you come out on top?</Text>
-        </VStack>
+        </Box>
+        <Box alignVertical="center" flexDirection="row" paddingBottom={"8"}>
+          <Text color="rumblePrimary">(</Text>
+          <Text>Verified Address required</Text>
+          <Text color="rumblePrimary">)</Text>
+        </Box>
       </Box>
     ),
     intents: [

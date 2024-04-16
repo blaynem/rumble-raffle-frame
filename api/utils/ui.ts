@@ -1,4 +1,4 @@
-import { Vars, createSystem } from "frog/ui";
+import { Vars, createSystem, defaultVars } from "frog/ui";
 
 // The theme for the UI components.
 // If we want to use all of the default vars, we can always import and spread the `defaultVars` from frog/ui.
@@ -25,12 +25,6 @@ export const THEME = {
         weight: 600,
       },
     ],
-    madimi: [
-      {
-        name: "Madimi One",
-        source: "google",
-      },
-    ],
   },
 } satisfies Vars; // Ensure the THEME satisfies the Vars interface so we can get proper completion.
 
@@ -38,6 +32,7 @@ export const THEME = {
 export const {
   Box,
   Columns,
+  Column,
   Divider,
   Icon,
   Image,

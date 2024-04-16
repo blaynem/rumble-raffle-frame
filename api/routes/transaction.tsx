@@ -6,7 +6,9 @@ import { TARGET_ROUTES } from "../constants.js";
 import { RouteTransaction } from "../types.js";
 import abi from "../utils/degen-abi.json";
 
-export const txFrame: TransactionHandler = async (frameContext) => {
+// THIS IS JUST AN EXAMPLE OF HOW WE WOULD DO A TRANSACTION. WE'RE NOT USING IT YET.
+
+const txFrame: TransactionHandler = async (frameContext) => {
   const { frameData } = frameContext;
   if (frameData?.address) {
     const val = await checkBalance(publicClicent as any, frameData.address);
