@@ -1,4 +1,47 @@
+
+
 ## Dev flow
+
+Install all deps
+
+```bash
+npm install
+```
+
+1. Start Supabase (Requires docker to be up)
+```bash
+npx supabase start
+```
+
+2. Start the Rumble Frame
+```bash
+npm run dev
+```
+
+3. Start Ngrok if needed
+```bash
+ngrok http http://localhost:5173
+```
+
+### Supabase / Prisma
+
+Prisma is a neat database ORM that allows us to create migrations, and evolve our data over time.
+Supabase is the database host.
+
+Any time we update the prisma schema, run `npx prisma generate` to update the generated types.
+
+Start / Stop Supabase Local CLI
+
+```bash
+npx supabase start
+npx supabase stop
+```
+
+To seed the database, run the following command:
+```bash
+npx prisma db seed
+```
+
 
 ### Rumble Frame Start
 ```bash

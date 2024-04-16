@@ -28,27 +28,27 @@ export interface ActivityTypes {
    * Who the winner(s) will be of the event.
    * In the example "PLAYER0 killed PLAYER1 with a knife", PLAYER0 will be the winner. So we return the index of the winner.
    *
-   * Will be null if no winner in the event.
+   * Will be empty if no winner in the event.
    */
-  activityWinner: number[] | null;
+  activityWinner: number[];
   /**
    * Who the loser(s) will be of the event.
    * In the example "PLAYER0 killed PLAYER1 with a knife", PLAYER1 will be the loser. So we return the index of the loser.
    *
-   * Will be null if no loser in the event.
+   * Will be empty if no loser in the event.
    */
-  activityLoser: number[] | null;
+  activityLoser: number[];
   /**
    * Kill counts are used to determine how much kill value is given to each participant.
    *
    * KillCount total value should never be more than the amount of losers.
-   * KillCount should be null when no one did the killing.
+   * KillCount should be empty when no one did the killing.
    *
    * Examples:
    * - "PLAYER0 killed PLAYER1 with a knife" - [1,0] PLAYER_0 will be given 1 kill, while PLAYER_1 recieves none.
    * - "PLAYER_0 and PLAYER_1 ate PLAYER_2" - [0.5, 0.5, 0] - both PLAYER_0 and PLAYER_1 participated in the kill, while PLAYER_2 is no more.
    */
-  killCounts: number[] | null;
+  killCounts: number[];
 }
 
 export type ActivityLogType = {

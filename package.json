@@ -7,7 +7,11 @@
     "dev": "frog dev",
     "deploy": "vercel"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
+    "@prisma/client": "^5.12.1",
     "frog": "^0.8.4",
     "hono": "^4",
     "pinata-fdk": "^3.7.2",
@@ -17,6 +21,8 @@
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "@types/uuid": "^9.0.1",
+    "prisma": "^5.12.1",
+    "supabase": "^1.157.2",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",
     "vercel": "^32.4.1"
