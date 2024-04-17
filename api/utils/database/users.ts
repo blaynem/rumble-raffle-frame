@@ -64,18 +64,3 @@ export const addPlayerToRoom = async ({
     return { error: e };
   }
 };
-
-/**
- * Get all players for a given room.
- */
-export const getAllPlayersOfRoom = async (
-  roomId: string,
-) =>
-  await prisma.players.findMany({
-    where: {
-      slug: roomId,
-    },
-    include: {
-      User: true,
-    },
-  });

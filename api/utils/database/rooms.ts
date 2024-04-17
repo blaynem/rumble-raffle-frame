@@ -74,12 +74,17 @@ export const getAllActivities = async (): Promise<ActivitiesObjType> => {
  * @returns a result object if successful or an error object if not. The result object will
  * contain a `skipped` boolean if the room was not updated because the game is not completed.
  */
-export const createOrUpdateRoom = async (
-  room_slug: string,
-  params: Pick<Prisma.RoomParamsCreateInput, "pve_chance" | "revive_chance">,
-  contract_address: string,
-  createdBy: string,
-): Promise<
+export const createOrUpdateRoom = async ({
+  room_slug,
+  params,
+  contract_address,
+  createdBy,
+}: {
+  room_slug: string;
+  params: Pick<Prisma.RoomParamsCreateInput, "pve_chance" | "revive_chance">;
+  contract_address: string;
+  createdBy: string;
+}): Promise<
   | { result: { skipped: boolean } } //
   | { error: any }
 > => {
@@ -147,8 +152,16 @@ export const createOrUpdateRoom = async (
         // A room with the slug already exists, but the game is not completed
         return { result: { skipped: true } };
       }
+      if (e.code === "P2025") {
+        // Contract not found
+        console.error("CreateOrUpdateRoom error: ", {
+          args: { room_slug, params, contract_address, createdBy },
+          meta: e.meta,
+        });
+        return { error: "Could not find Contract or User to link to" };
+      }
     }
-    console.error("createOrUpdateRoom error: ", {
+    console.error("CreateOrUpdateRoom unhandled error: ", {
       args: { room_slug, params, contract_address, createdBy },
       error: e,
     });

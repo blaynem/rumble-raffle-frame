@@ -50,15 +50,15 @@ async function main() {
   });
 
   // Create a room
-  await createOrUpdateRoom(
-    "default",
-    {
+  await createOrUpdateRoom({
+    room_slug: "default",
+    params: {
       pve_chance: 30,
       revive_chance: 5,
     },
-    DEGEN_CONTRACT,
-    BLAYNE_EVM_ADDRESS,
-  );
+    contract_address: DEGEN_CONTRACT,
+    createdBy: BLAYNE_EVM_ADDRESS,
+  });
 }
 main()
   .then(async () => {

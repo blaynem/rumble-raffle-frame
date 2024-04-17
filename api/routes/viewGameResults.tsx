@@ -4,23 +4,28 @@ import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
 import { Box, Text, Divider, Spacer } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
+import { getPlayerCount } from "../utils/database/players.js";
 
 const ViewResultsSuccess = ({
   //   results = [],
   //   participated = undefined,
   results = ["wow", "test", "12", "1asda"],
   participated = { placement: 1, kills: 3 },
+  entrantCount = 10,
 }: {
   results?: string[];
   participated?: {
     placement: number;
     kills: number;
   };
+  entrantCount: number;
 }) => (
   <Box grow background="rumbleBgDark" color="rumbleNone">
     <Box alignItems="center">
       <BETAHeading />
-      <Text>Next Rumble in 12 min</Text>
+      <Text>
+        Next Rumble in 12 min. {entrantCount && `Entrants: ${entrantCount}`}
+      </Text>
     </Box>
     <Box
       alignVertical="center"
@@ -84,6 +89,8 @@ const intents: FrameIntent[] = [
 ];
 
 const viewGameResultsFrame: FrameHandler = async (frameContext) => {
+  const playercount = await getPlayerCount("default");
+  const entrantCount = ("result" in playercount && playercount.result) || 0;
   // TODO: Make a fetch to the results API.
   // If we get the users address, we add them to the game.
   if (frameContext.verified && frameContext.frameData) {
@@ -91,12 +98,12 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
       frameContext.frameData.fid
     );
     return frameContext.res({
-      image: <ViewResultsSuccess />,
+      image: <ViewResultsSuccess entrantCount={entrantCount} />,
       intents: intents,
     });
   }
   return frameContext.res({
-    image: <ViewResultsSuccess />,
+    image: <ViewResultsSuccess entrantCount={entrantCount} />,
     intents: intents,
   });
 };

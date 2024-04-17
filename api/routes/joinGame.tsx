@@ -7,8 +7,15 @@ import { BETAHeading } from "../components/BETAHeader.js";
 import { minifyAddress } from "../utils/utils.js";
 import { getActiveRoomWithParams } from "../utils/database/rooms.js";
 import { addPlayerToRoom, addUser } from "../utils/database/users.js";
+import { getPlayerCount } from "../utils/database/players.js";
 
-const JoinedGameSuccess = ({ address }: { address: string }) => (
+const JoinedGameSuccess = ({
+  address,
+  entrantCount,
+}: {
+  address: string;
+  entrantCount: number;
+}) => (
   <Box
     grow
     alignVertical="center"
@@ -18,7 +25,10 @@ const JoinedGameSuccess = ({ address }: { address: string }) => (
   >
     <VStack>
       <BETAHeading />
-      <Text>Next Rumble starts in: 12 Minutes</Text>
+      <Text>
+        Next Rumble starts in 12 min.{" "}
+        {entrantCount && `Entrants: ${entrantCount}`}
+      </Text>
       <Box flexDirection="row" gap={"2"}>
         <Text>Joined with</Text>
         <Text color="rumblePrimary">{minifyAddress(address)}</Text>
@@ -66,7 +76,7 @@ export const addUserToGameFlow = async ({
 }): Promise<{ result: { address: string } } | { error: any }> => {
   try {
     const { address, username } = await getUserDataByFID(farcaster_id);
-    console.log("User", address, username);
+    if (!address || !username) throw new Error("User not found");
     // Add the user to the database
     const userData = await addUser({
       id: address,
@@ -99,13 +109,23 @@ const joinGameFrame: FrameHandler = async (frameContext) => {
     if (!frameContext.verified || !frameContext.frameData) {
       throw new Error("User not verified");
     }
+
     const user = await addUserToGameFlow({
       room_slug: "default",
       farcaster_id: frameContext.frameData.fid,
     });
     if ("error" in user) throw user.error;
+
+    const playercount = await getPlayerCount("default");
+    const entrantCount = ("result" in playercount && playercount.result) || 0;
+
     return frameContext.res({
-      image: <JoinedGameSuccess address={user.result.address} />,
+      image: (
+        <JoinedGameSuccess
+          address={user.result.address}
+          entrantCount={entrantCount}
+        />
+      ),
       intents: [
         <Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>,
         <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
