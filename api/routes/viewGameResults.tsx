@@ -1,4 +1,4 @@
-import { Button, FrameHandler } from "frog";
+import { Button, FrameHandler, FrameIntent } from "frog";
 import { getConnectedAddressForUser } from "../utils/pinata-calls.js";
 import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
@@ -75,7 +75,15 @@ const ViewResultsSuccess = ({
   </Box>
 );
 
-const viewResultsFrame: FrameHandler = async (frameContext) => {
+const intents: FrameIntent[] = [
+  <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>Refresh</Button>,
+  <Button action={TARGET_ROUTES.JOIN_GAME}>Join Game</Button>,
+  <Button.Reset>Home</Button.Reset>,
+  // TODO: Actually get a dump of the most current logs
+  // <Button.Link href="/seefullLogs">Logs</Button.Link>,
+];
+
+const viewGameResultsFrame: FrameHandler = async (frameContext) => {
   // TODO: Make a fetch to the results API.
   // If we get the users address, we add them to the game.
   if (frameContext.verified && frameContext.frameData) {
@@ -84,18 +92,18 @@ const viewResultsFrame: FrameHandler = async (frameContext) => {
     );
     return frameContext.res({
       image: <ViewResultsSuccess />,
-      intents: [<Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>],
+      intents: intents,
     });
   }
   return frameContext.res({
     image: <ViewResultsSuccess />,
-    intents: [<Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>],
+    intents: intents,
   });
 };
 
-const viewResultsRoute: RoutedFrames = {
+const viewGameResultsRoute: RoutedFrames = {
   route: TARGET_ROUTES.VIEW_GAME_RESULTS,
-  handler: viewResultsFrame,
+  handler: viewGameResultsFrame,
 };
 
-export default viewResultsRoute;
+export default viewGameResultsRoute;

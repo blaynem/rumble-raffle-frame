@@ -1,4 +1,4 @@
-import { Button, FrameHandler } from "frog";
+import { Button, FrameHandler, FrameIntent } from "frog";
 import { getConnectedAddressForUser } from "../utils/pinata-calls.js";
 import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
@@ -39,9 +39,19 @@ const JoinGameError = () => (
       <Box paddingTop={"8"}>
         <Text>If this is a mistake, try to join again.</Text>
       </Box>
+      <Box paddingTop={"8"} flexDirection="row" gap="4">
+        <Text>If the error persists please reach out to</Text>
+        <Text color="rumblePrimary">@drilkmops</Text>
+      </Box>
     </VStack>
   </Box>
 );
+
+// Intents that should be used in both success and error states.
+const intents: FrameIntent[] = [
+  <Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>,
+  <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
+];
 
 const joinGameFrame: FrameHandler = async (frameContext) => {
   // If we get the users address, we add them to the game.
@@ -51,18 +61,17 @@ const joinGameFrame: FrameHandler = async (frameContext) => {
     );
     return frameContext.res({
       image: <JoinedGameSuccess address={address} />,
-      intents: [
-        <Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>,
-        <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
-      ],
+      intents: intents,
     });
   }
   // If not, we display "must have connected wallet" message.
   return frameContext.res({
     image: <JoinGameError />,
     intents: [
-      <Button action={TARGET_ROUTES.JOIN_GAME}>Join Game</Button>,
-      <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
+      ...intents,
+      <Button.Link href="https://warpcast.com/drilkmops">
+        @drilkmops
+      </Button.Link>,
     ],
   });
 };

@@ -26,9 +26,7 @@ const baseRouteFrame: FrameHandler = async (frameContext) => {
     ),
     intents: [
       <Button action={TARGET_ROUTES.JOIN_GAME}>🤜 Join the Rumble 🤛</Button>,
-      // <Button.Transaction target={TARGET_ROUTES.CHECK_BALANCE}>
-      //   Transaction
-      // </Button.Transaction>,
+      <Button action={TARGET_ROUTES.HOW_IT_WORKS}>How it works</Button>,
     ],
   });
 };

@@ -3,4 +3,5 @@ export const TARGET_ROUTES = {
   JOIN_GAME: "/joinGame",
   CHECK_BALANCE: "/checkBalance",
   VIEW_GAME_RESULTS: "/viewGameResults",
+  HOW_IT_WORKS: "/howItWorks",
 };
