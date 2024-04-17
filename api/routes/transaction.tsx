@@ -2,7 +2,7 @@ import { TransactionHandler } from "frog";
 import { Hex } from "viem";
 import { publicClicent } from "../index.js";
 import { checkBalance } from "../utils/contract-checks.js";
-import { TARGET_ROUTES } from "../constants.js";
+import { DEGEN_CONTRACT, TARGET_ROUTES } from "../constants.js";
 import { RouteTransaction } from "../types.js";
 import abi from "../utils/degen-abi.json";
 
@@ -11,7 +11,11 @@ import abi from "../utils/degen-abi.json";
 const txFrame: TransactionHandler = async (frameContext) => {
   const { frameData } = frameContext;
   if (frameData?.address) {
-    const val = await checkBalance(publicClicent as any, frameData.address);
+    const val = await checkBalance(
+      publicClicent as any,
+      DEGEN_CONTRACT,
+      frameData.address as "0x"
+    );
     console.log("---val---", val);
   }
   return frameContext.contract({

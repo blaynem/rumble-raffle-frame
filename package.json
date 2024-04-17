@@ -5,7 +5,8 @@
   "scripts": {
     "build": "frog vercel-build",
     "dev": "frog dev",
-    "deploy": "vercel"
+    "deploy": "vercel",
+    "typecheck": "tsc -p tsconfig.json --noEmit --incremental false"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

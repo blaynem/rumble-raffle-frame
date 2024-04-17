@@ -1,4 +1,4 @@
-import { Vars, createSystem, defaultVars } from "frog/ui";
+import { createSystem, Vars } from "frog/ui";
 
 // The theme for the UI components.
 // If we want to use all of the default vars, we can always import and spread the `defaultVars` from frog/ui.

@@ -1,4 +1,4 @@
-import { Players, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { prisma } from "./client.js";
 
 /**

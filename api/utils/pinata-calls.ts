@@ -1,5 +1,3 @@
-import { BLAYNE_EVM_ADDRESS } from "../constants.js";
-
 /**
  * Pinata API Docs:
  * https://docs.pinata.cloud/farcaster/hub-api-reference/
