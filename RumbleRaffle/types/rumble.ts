@@ -1,10 +1,10 @@
 import type {
+  ActivitiesObjType,
   ActivityTypes,
   allPlayersObj,
-  PlayerType,
-  GameEndType,
-  ActivitiesObjType,
   GameActivityLogsType,
+  GameEndType,
+  PlayerType,
 } from "./index.js";
 
 /**
@@ -127,15 +127,15 @@ export interface RumbleInterface {
    */
   replaceActivityDescPlaceholders: (
     activity: ActivityTypes,
-    playerIds: string[]
+    playerIds: string[],
   ) => string;
   /**
    * Clears all the activity logs and restarts the game.
    * Keeps all players entered.
    */
-  restartGame: () => Promise<GameEndType>;
+  restartGame: () => GameEndType;
   /**
    * Will complete the game by itself without needing to press next rounds, etc.
    */
-  startAutoPlayGame: () => Promise<GameEndType>;
+  startAutoPlayGame: () => GameEndType;
 }

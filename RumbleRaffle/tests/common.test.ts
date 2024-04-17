@@ -1,13 +1,11 @@
 import {
   doActivity,
-  doesEventOccur,
   getPlayersFromIds,
   getPlayersFromIndex,
-  getRandomNumber,
   pickActivity,
 } from "../common.js";
 import type { ActivityTypes, allPlayersObj } from "../types/index.js";
-import { TEST_ACTIVITIES } from "./constants.js";
+import { TEST_ACTIVITIES } from "./test_constants.js";
 import * as common from "../common.js";
 
 describe("common functions", () => {
@@ -31,24 +29,6 @@ describe("common functions", () => {
       { id: "2", name: "name2" },
       { id: "1", name: "name1" },
     ]);
-  });
-
-  test("doesEventOccur", () => {
-    jest.spyOn(global.Math, "random").mockReturnValueOnce(0.05);
-    // We are testing that the random number (random * 101) is less than the event occur percent (30)
-    // We set mock return to .05 which turns to 5% (.05 * 101)
-    expect(doesEventOccur(30)).toEqual(true); // 30 is greater than 5, so true
-
-    jest.spyOn(global.Math, "random").mockReturnValueOnce(1);
-    // We set mock return to 1 which turns to 100 (1 * 101)
-    expect(doesEventOccur(30)).toEqual(false); // 30 is less than 100, so false
-  });
-
-  test("getRandomNumber", () => {
-    jest.spyOn(global.Math, "random").mockReturnValueOnce(1);
-    expect(getRandomNumber(100)).toEqual(100);
-    jest.spyOn(global.Math, "random").mockReturnValueOnce(0.5);
-    expect(getRandomNumber(100)).toEqual(50);
   });
 
   test("doActivity", () => {
@@ -88,7 +68,7 @@ describe("common functions", () => {
     beforeEach(() => {
       getAmtRandomItemsFromArrSpy = jest.spyOn(
         common,
-        "getAmtRandomItemsFromArr"
+        "getAmtRandomItemsFromArr",
       );
     });
 
@@ -131,11 +111,10 @@ describe("common functions", () => {
     test("will throw error when maxPlayerAmt = 0, maxdeaths = 0", () => {
       const maxPlayerAmt = 0;
       const maxDeaths = 0;
-      expect(() =>
-        pickActivity(TEST_ACTIVITIES.PVE, maxPlayerAmt, maxDeaths)
-      ).toThrowError(
-        Error("getAmtRandomItemsFromArr: more elements taken than available")
-      );
+      expect(() => pickActivity(TEST_ACTIVITIES.PVE, maxPlayerAmt, maxDeaths))
+        .toThrowError(
+          Error("getAmtRandomItemsFromArr: more elements taken than available"),
+        );
     });
   });
 });

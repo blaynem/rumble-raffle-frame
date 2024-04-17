@@ -1,11 +1,21 @@
 import { Activities, Prisma } from "@prisma/client";
-import { ActivityTypes } from "../../../RumbleRaffle/types/activity.js";
+import {
+  ActivitiesObjType,
+  ActivityTypes,
+} from "../../../RumbleRaffle/types/activity.js";
 import { prisma } from "./client.js";
 
-export const getActiveRoom = async (room_slug: string) =>
+export const getActiveRoomWithParams = async (room_slug: string) =>
   prisma.rooms.findFirst({
     where: {
       slug: room_slug,
+    },
+    include: {
+      Params: {
+        include: {
+          Contract: true,
+        },
+      },
     },
   });
 
@@ -17,11 +27,7 @@ const convertKillCountToNum = (data: Activities): ActivityTypes => ({
 /**
  * Get all activities from the database.
  */
-export const getAllActivities = async (): Promise<{
-  pveData: ActivityTypes[];
-  pvpData: ActivityTypes[];
-  reviveData: ActivityTypes[];
-}> => {
+export const getAllActivities = async (): Promise<ActivitiesObjType> => {
   const pveData: ActivityTypes[] = (await prisma.activities.findMany({
     where: {
       environment: "PVE",
@@ -41,9 +47,9 @@ export const getAllActivities = async (): Promise<{
   })).map(convertKillCountToNum);
 
   return {
-    pveData,
-    pvpData,
-    reviveData,
+    PVE: pveData,
+    PVP: pvpData,
+    REVIVE: reviveData,
   };
 };
 

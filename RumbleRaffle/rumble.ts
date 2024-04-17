@@ -1,23 +1,23 @@
 import { v4 as uuidv4 } from "uuid";
 import type {
   ActivitiesObjType,
-  PlayerType,
+  ActivityLogType,
   ActivityTypes,
   allPlayersObj,
-  ActivityLogType,
-  RoundActivityLogType,
-  WinnerLogType,
-  GameEndType,
-  RumbleInterface,
   GameActivityLogsType,
+  GameEndType,
+  PlayerType,
+  RoundActivityLogType,
+  RumbleInterface,
+  WinnerLogType,
 } from "./types/index.js";
 import {
   doActivity,
-  pickActivity,
+  doesEventOccur,
   getAmtRandomItemsFromArr,
   getPlayersFromIds,
-  doesEventOccur,
   getRandomNumber,
+  pickActivity,
 } from "./common.js";
 import type { SetupType } from "./types/index.js";
 
@@ -28,7 +28,6 @@ import type { SetupType } from "./types/index.js";
  * Characters actually store items that are gathered from pve quests. Ex:
  * - Character makes a spear, has a chance to use a spear for the killing weapon in a later match.
  * - Character find water, that water could have been poisoned (drinking it in another tound kills them)
- *
  */
 
 const defaultGameActivities: ActivitiesObjType = {
@@ -160,7 +159,7 @@ export default class Rumble implements RumbleInterface {
     delete newAllPlayersObj[playerId];
 
     const newAllPlayersIds = [...this.allPlayerIds].filter(
-      (id) => id !== playerId
+      (id) => id !== playerId,
     );
 
     this.allPlayers = newAllPlayersObj;
@@ -196,7 +195,7 @@ export default class Rumble implements RumbleInterface {
   /**
    * Will complete the game by itself without needing to press next rounds, etc.
    */
-  startAutoPlayGame(): Promise<GameEndType> {
+  startAutoPlayGame(): GameEndType {
     this.startGame();
 
     // If game hasn't started for some reason, we don't go to nextRound.
@@ -210,17 +209,15 @@ export default class Rumble implements RumbleInterface {
     return this.gameFinished();
   }
 
-  gameFinished(): Promise<GameEndType> {
-    return new Promise<GameEndType>((resolve) => {
-      resolve({
-        gameActivityLogs: this.gameActivityLogs,
-        allPlayers: this.allPlayers,
-        gameKills: this.gameKills,
-        gameRunnerUps: this.gameRunnerUps,
-        gameWinner: this.gameWinner,
-        roundCounter: this.roundCounter,
-      });
-    });
+  gameFinished(): GameEndType {
+    return {
+      gameActivityLogs: this.gameActivityLogs,
+      allPlayers: this.allPlayers,
+      gameKills: this.gameKills,
+      gameRunnerUps: this.gameRunnerUps,
+      gameWinner: this.gameWinner,
+      roundCounter: this.roundCounter,
+    };
   }
 
   /**
@@ -257,7 +254,7 @@ export default class Rumble implements RumbleInterface {
   /**
    * Resets activity logs and all game state.
    */
-  restartGame(): Promise<GameEndType> {
+  restartGame(): GameEndType {
     this.gameActivityLogs = [];
     this.gameKills = {};
     this.gameRunnerUps = [];
@@ -314,18 +311,18 @@ export default class Rumble implements RumbleInterface {
     const chosenActivity = pickActivity(
       pveRound ? this.activities.PVE : this.activities.PVP,
       playerIds.length,
-      playerIds.length - 1
+      playerIds.length - 1,
     );
     // Chooses random players
     const chosenPlayerIds: string[] = getAmtRandomItemsFromArr(
       playerIds,
-      chosenActivity.amountOfPlayers
+      chosenActivity.amountOfPlayers,
     );
     // Do the activity here
     const activity: ActivityLogType = doActivity(
       chosenActivity,
       chosenPlayerIds,
-      this.replaceActivityDescPlaceholders
+      this.replaceActivityDescPlaceholders,
     );
 
     return activity;
@@ -358,8 +355,8 @@ export default class Rumble implements RumbleInterface {
     let deadPlayerIds: string[] = [...this.playersSlainIds];
 
     // Will only revive if there are any dead players.
-    const playerRevives =
-      doesEventOccur(this.chanceOfRevive) && deadPlayerIds.length > 0;
+    const playerRevives = doesEventOccur(this.chanceOfRevive) &&
+      deadPlayerIds.length > 0;
 
     // Will need to do a loop to create multiple events. Will also need to check and make sure there are enough people to do the next event.
     for (
@@ -386,7 +383,7 @@ export default class Rumble implements RumbleInterface {
       if (activity.losers !== null) {
         // We filter any of the losers
         availablePlayerIds = availablePlayerIds.filter(
-          (id) => activity.losers!.indexOf(id) < 0
+          (id) => activity.losers!.indexOf(id) < 0,
         );
         // Add them to the deadPlayerIds
         deadPlayerIds.push(...activity.losers);
@@ -403,7 +400,7 @@ export default class Rumble implements RumbleInterface {
       // Gets the player id we are going to revive.
       const playerToReviveId: string = getAmtRandomItemsFromArr(
         deadPlayerIds,
-        1
+        1,
       )[0];
       // Add player back into pool.
       availablePlayerIds = [...availablePlayerIds, playerToReviveId];
@@ -414,7 +411,7 @@ export default class Rumble implements RumbleInterface {
       const activity: ActivityLogType = doActivity(
         chosenActivity,
         [playerToReviveId],
-        this.replaceActivityDescPlaceholders
+        this.replaceActivityDescPlaceholders,
       );
       activityLog.push(activity);
     }
@@ -484,7 +481,7 @@ export default class Rumble implements RumbleInterface {
             }
           });
         });
-      }
+      },
     );
 
     this.gameKills = totalKillCount;
@@ -514,7 +511,7 @@ export default class Rumble implements RumbleInterface {
    */
   replaceActivityDescPlaceholders = (
     activity: ActivityTypes,
-    playerIds: string[]
+    playerIds: string[],
   ): string => {
     const matchPlayerNumber = /(PLAYER_\d+)/; // matches PLAYER_0, PLAYER_12, etc
     const parts = activity.description.split(matchPlayerNumber);

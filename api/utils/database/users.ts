@@ -70,9 +70,12 @@ export const addPlayerToRoom = async ({
  */
 export const getAllPlayersOfRoom = async (
   roomId: string,
-): Promise<Players[]> =>
+) =>
   await prisma.players.findMany({
     where: {
       slug: roomId,
+    },
+    include: {
+      User: true,
     },
   });

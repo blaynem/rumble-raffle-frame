@@ -1,8 +1,8 @@
 import type {
-  ActivityTypes,
-  PlayerType,
   ActivityLogType,
+  ActivityTypes,
   allPlayersObj,
+  PlayerType,
 } from "./types/index.js";
 /**
  * Functions needed:
@@ -21,10 +21,11 @@ export const getAmtRandomItemsFromArr = (arr: any[], n: number): any[] => {
   const result = new Array(n);
   let len = arr.length;
   const taken = new Array(len);
-  if (n > len)
+  if (n > len) {
     throw new RangeError(
-      "getAmtRandomItemsFromArr: more elements taken than available"
+      "getAmtRandomItemsFromArr: more elements taken than available",
     );
+  }
   while (n--) {
     const x = Math.floor(Math.random() * len);
     result[n] = arr[x in taken ? taken[x] : x];
@@ -41,11 +42,11 @@ export const getAmtRandomItemsFromArr = (arr: any[], n: number): any[] => {
 export const pickActivity = (
   options: ActivityTypes[],
   maxPlayerAmount: number,
-  maxDeaths?: number
+  maxDeaths?: number,
 ): ActivityTypes => {
   // We only want to give options where there are enough players.
   let filteredOptions = options.filter(
-    ({ amountOfPlayers }) => amountOfPlayers <= maxPlayerAmount
+    ({ amountOfPlayers }) => amountOfPlayers <= maxPlayerAmount,
   );
   // getAmtRandomItemsFromArr returns an array, so we get the first item.
   if (maxDeaths) {
@@ -65,7 +66,7 @@ export const pickActivity = (
  */
 export const getPlayersFromIndex = (
   indexes: number[] | null,
-  playerIds: string[]
+  playerIds: string[],
 ): string[] | null => {
   return indexes === null ? null : indexes.map((index) => playerIds[index]);
 };
@@ -81,8 +82,8 @@ export const doActivity = (
   playerIds: string[],
   createContentCallback: (
     activity: ActivityTypes,
-    playerIds: string[]
-  ) => string
+    playerIds: string[],
+  ) => string,
 ): ActivityLogType => {
   const { activityLoser, activityWinner, id } = activity;
   const winners = getPlayersFromIndex(activityWinner, playerIds);
@@ -91,7 +92,7 @@ export const doActivity = (
   const killCount: { [playerId: string]: number } = {};
   if (activity.killCounts) {
     activity.killCounts.forEach(
-      (val, index) => (killCount[playerIds[index]] = val)
+      (val, index) => (killCount[playerIds[index]] = val),
     );
   }
 
@@ -114,7 +115,7 @@ export const doActivity = (
  */
 export const getPlayersFromIds = (
   ids: string[],
-  obj: allPlayersObj
+  obj: allPlayersObj,
 ): PlayerType[] => {
   return ids.map((id) => obj[id]);
 };

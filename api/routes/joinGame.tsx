@@ -5,7 +5,7 @@ import { RoutedFrames } from "../types.js";
 import { Box, VStack, Text, Heading } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
 import { minifyAddress } from "../utils/utils.js";
-import { getActiveRoom } from "../utils/database/rooms.js";
+import { getActiveRoomWithParams } from "../utils/database/rooms.js";
 import { addPlayerToRoom, addUser } from "../utils/database/users.js";
 
 const JoinedGameSuccess = ({ address }: { address: string }) => (
@@ -76,7 +76,7 @@ export const addUserToGameFlow = async ({
     if ("error" in userData) throw userData.error;
 
     // Get the active room
-    const room = await getActiveRoom(room_slug);
+    const room = await getActiveRoomWithParams(room_slug);
     if (!room) throw new Error("No active room found");
 
     const addedToRoom = await addPlayerToRoom({

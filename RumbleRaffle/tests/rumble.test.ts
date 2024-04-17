@@ -2,11 +2,10 @@ import RumbleGame, { defaultSetup } from "../rumble.js";
 import type {
   ActivityLogType,
   RoundActivityLogType,
-  RumbleInterface,
   SetupType,
   WinnerLogType,
 } from "../types/index.js";
-import { TEST_ACTIVITIES } from "./constants.js";
+import { TEST_ACTIVITIES } from "./test_constants.js";
 import * as common from "../common.js";
 
 const player1 = { id: "1", name: "player-1" };
@@ -171,7 +170,7 @@ describe("Rumble App", () => {
       // Assure it does not start when lacking players
       rumbleRaffle.allPlayerIds = [];
       expect(() => rumbleRaffle.startGame()).toThrow(
-        "Game must have more than 2 players to start."
+        "Game must have more than 2 players to start.",
       );
       expect(restartGameSpy).toBeCalledTimes(0);
 
@@ -180,7 +179,7 @@ describe("Rumble App", () => {
       rumbleRaffle.gameStarted = true;
       // TODO: This error is not correct.
       expect(() => rumbleRaffle.startGame()).toThrow(
-        "Game must have more than 2 players to start."
+        "Game must have more than 2 players to start.",
       );
       expect(restartGameSpy).toBeCalledTimes(0);
     });
@@ -265,7 +264,7 @@ describe("Rumble App", () => {
       rumbleRaffle.pickAndCreateActivity([player1.id]);
       const activityOptions = pickActivitySpy.mock.calls[0][0];
       const filterPveActivities = activityOptions.filter(
-        (activity) => activity.environment !== "PVE"
+        (activity) => activity.environment !== "PVE",
       );
       // It should not have any activities besides PVE
       expect(filterPveActivities.length).toEqual(0);
@@ -281,7 +280,7 @@ describe("Rumble App", () => {
       rumbleRaffle.pickAndCreateActivity(defaultAllPlayerIds);
       const activityOptions = pickActivitySpy.mock.calls[0][0];
       const filterPveActivities = activityOptions.filter(
-        (activity) => activity.environment !== "PVE"
+        (activity) => activity.environment !== "PVE",
       );
       // It should not have any activities besides PVE
       expect(filterPveActivities.length).toEqual(0);
@@ -299,7 +298,7 @@ describe("Rumble App", () => {
       rumbleRaffle.pickAndCreateActivity(defaultAllPlayerIds);
       const activityOptions = pickActivitySpy.mock.calls[0][0];
       const filterPveActivities = activityOptions.filter(
-        (activity) => activity.environment !== "PVP"
+        (activity) => activity.environment !== "PVP",
       );
       // It should not have any activities besides PVP
       expect(filterPveActivities.length).toEqual(0);
@@ -338,7 +337,7 @@ describe("Rumble App", () => {
       const doesEventOccurSpy = jest.spyOn(common, "doesEventOccur");
       const getActivityLoopTimesSpy = jest.spyOn(
         rumbleRaffle,
-        "getActivityLoopTimes"
+        "getActivityLoopTimes",
       );
       // Set the game state
       rumbleRaffle.playersRemainingIds = [player1.id, player2.id];
@@ -353,8 +352,8 @@ describe("Rumble App", () => {
       rumbleRaffle.createRound();
 
       // Test the activity log itself
-      const activityLog =
-        rumbleRaffle.getActivityLog()[0] as RoundActivityLogType;
+      const activityLog = rumbleRaffle
+        .getActivityLog()[0] as RoundActivityLogType;
       expect(activityLog.playersRemainingIds).toEqual(["1", "2", "3"]);
       expect(activityLog.playersSlainIds).toEqual([]);
       expect(activityLog.roundCounter).toEqual(0);
@@ -385,11 +384,11 @@ describe("Rumble App", () => {
       const doesEventOccurSpy = jest.spyOn(common, "doesEventOccur");
       const getActivityLoopTimesSpy = jest.spyOn(
         rumbleRaffle,
-        "getActivityLoopTimes"
+        "getActivityLoopTimes",
       );
       const pickAndCreateActivitySpy = jest.spyOn(
         rumbleRaffle,
-        "pickAndCreateActivity"
+        "pickAndCreateActivity",
       );
       // Set the initial game state
       rumbleRaffle.playersRemainingIds = defaultAllPlayerIds;
@@ -405,8 +404,8 @@ describe("Rumble App", () => {
       rumbleRaffle.createRound();
 
       // Test the activity log itself
-      const activityLog =
-        rumbleRaffle.getActivityLog()[0] as RoundActivityLogType;
+      const activityLog = rumbleRaffle
+        .getActivityLog()[0] as RoundActivityLogType;
       expect(activityLog.playersRemainingIds).toEqual(["1", "2"]);
       expect(activityLog.playersSlainIds).toEqual(["3"]);
       expect(activityLog.roundCounter).toEqual(0);
