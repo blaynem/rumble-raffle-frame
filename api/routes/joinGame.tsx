@@ -57,7 +57,7 @@ const JoinGameError = () => (
  *
  * @returns The user's evm address
  */
-const addUserToGameFlow = async ({
+export const addUserToGameFlow = async ({
   farcaster_id,
   room_slug,
 }: {

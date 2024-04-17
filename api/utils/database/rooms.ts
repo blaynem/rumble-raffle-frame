@@ -47,66 +47,105 @@ export const getAllActivities = async (): Promise<{
   };
 };
 
-export const createRoom = async (
+/**
+ * Method to create or update a room and it's params in the db.
+ *
+ * Will create a new room if:
+ * * A room with given slug is not found
+ *
+ * Will update a room if:
+ * * A room with given slug is found AND the game is completed
+ *
+ * Will error if:
+ * * A room with given slug is found AND the game is not completed
+ *
+ * The error will be caught and handled by this method.
+ *
+ * @param room_slug The room slug
+ * @param params The room params
+ * @param contract_address The contract address
+ * @param createdBy The creator of the room - EVM Address lowercased
+ * @returns a result object if successful or an error object if not. The result object will
+ * contain a `skipped` boolean if the room was not updated because the game is not completed.
+ */
+export const createOrUpdateRoom = async (
   room_slug: string,
   params: Pick<Prisma.RoomParamsCreateInput, "pve_chance" | "revive_chance">,
   contract_address: string,
-  /**
-   * Must be an EVM compatible address.
-   */
   createdBy: string,
-) => {
-  const roomsUpsert: Prisma.RoomsUpsertArgs = {
-    where: {
-      slug: room_slug,
-    },
-    update: {
-      Params: {
-        create: {
-          ...params,
-          ...(createdBy && {
-            Creator: {
-              connect: {
-                id: createdBy,
-              },
-            },
-          }),
-          Contract: {
-            connect: {
-              contract_address: contract_address.toLowerCase(),
-            },
-          },
-        },
-      },
-    },
-    create: {
-      slug: room_slug,
-      Params: {
-        create: {
-          ...params,
-          ...(createdBy && {
-            Creator: {
-              connect: {
-                id: createdBy,
-              },
-            },
-          }),
-          Contract: {
-            connect: {
-              contract_address: contract_address.toLowerCase(),
-            },
-          },
-        },
-      },
-    },
-    include: {
-      Params: {
-        include: {
-          Contract: true,
-        },
-      },
-    },
-  };
+): Promise<
+  | { result: { skipped: boolean } } //
+  | { error: any }
+> => {
+  try {
+    // Lowercase the addresses
+    const _createdBy = createdBy.toLowerCase();
+    const _contract_address = contract_address.toLowerCase();
 
-  return await prisma.rooms.upsert(roomsUpsert);
+    const roomsUpsert: Prisma.RoomsUpsertArgs = {
+      where: {
+        slug: room_slug,
+        Params: {
+          game_completed: true, // Only update if the game is completed
+        },
+      },
+      update: {
+        Params: {
+          create: {
+            ...params,
+            Creator: {
+              connect: {
+                id: _createdBy,
+              },
+            },
+            Contract: {
+              connect: {
+                contract_address: _contract_address,
+              },
+            },
+          },
+        },
+      },
+      create: {
+        slug: room_slug,
+        Params: {
+          create: {
+            ...params,
+            Creator: {
+              connect: {
+                id: _createdBy,
+              },
+            },
+            Contract: {
+              connect: {
+                contract_address: _contract_address,
+              },
+            },
+          },
+        },
+      },
+      include: {
+        Params: {
+          include: {
+            Contract: true,
+          },
+        },
+      },
+    };
+
+    await prisma.rooms.upsert(roomsUpsert);
+    return { result: { skipped: false } };
+  } catch (e: any) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === "P2002") {
+        // A room with the slug already exists, but the game is not completed
+        return { result: { skipped: true } };
+      }
+    }
+    console.error("createOrUpdateRoom error: ", {
+      args: { room_slug, params, contract_address, createdBy },
+      error: e,
+    });
+    return { error: e };
+  }
 };

@@ -68,30 +68,35 @@ export const getConnectedAddressForUser = async (
   return data.address;
 };
 
-type UserNameProofsByFID = {
-  proofs: {
-    timestamp: number;
-    name: string;
-    owner: string;
-    signature: string;
-    fid: number;
+type UsedDataByFID = {
+  hash: string;
+  hashScheme: string;
+  signature: string;
+  signatureScheme: string;
+  signer: string;
+  data: {
     type: string;
-  }[];
+    fid: number;
+    timestamp: number;
+    network: string;
+    userDataBody: {
+      type: string;
+      value: string;
+    };
+  };
 };
 
 /**
- * Gets the username proofs for a given FID
+ * Gets the user data for a given FID
  *
- * Note: We take the first proof for now.
  * @param fid Farcaster ID
- * @returns The username proofs
+ * @returns The user data
  */
-export const getUserNameProofsByFID = async (fid: number) => {
+export const getUsedDataByFID = async (fid: number): Promise<UsedDataByFID> => {
   const res = await fetch(
-    `https://hub.pinata.cloud/v1/userNameProofsByFid?fid=${fid}`,
+    `https://hub.pinata.cloud/v1/userDataByFid?user_data_type=USER_DATA_TYPE_USERNAME&fid=${fid}`,
   );
-  const json = (await res.json()) as UserNameProofsByFID;
-  return json.proofs[0];
+  return (await res.json()) as UsedDataByFID;
 };
 
 /**
@@ -103,7 +108,7 @@ export const getUserDataByFID = async (fid: number): Promise<{
   username: string;
   address: string;
 }> => {
-  const proofs = await getUserNameProofsByFID(fid);
+  const userData = await getUsedDataByFID(fid);
   const address = await getConnectedAddressForUser(fid);
-  return { username: proofs.name, address };
+  return { username: userData.data.userDataBody.value, address };
 };
