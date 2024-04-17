@@ -166,11 +166,12 @@ model Rooms {
 
 model Users {
     /// Users public address
-    id         String   @id @unique @db.VarChar(45) // evm compatible address
-    name       String   @db.VarChar(200)
-    is_admin   Boolean  @default(false) @db.Boolean
-    created_at DateTime @default(dbgenerated("now()"))
-    updated_at DateTime @default(dbgenerated("now()")) @updatedAt
+    id           String   @id @unique @db.VarChar(45) // evm compatible address
+    name         String   @db.VarChar(200)
+    is_admin     Boolean  @default(false) @db.Boolean
+    created_at   DateTime @default(dbgenerated("now()"))
+    updated_at   DateTime @default(dbgenerated("now()")) @updatedAt
+    farcaster_id String?  @db.VarChar(18)
 
     // Opposite Relations
     RoomParams RoomParams[]

@@ -1,10 +1,12 @@
-import { Button, FrameHandler, FrameIntent } from "frog";
-import { getConnectedAddressForUser } from "../utils/pinata-calls.js";
+import { Button, FrameHandler } from "frog";
+import { getUserDataByFID } from "../utils/pinata-calls.js";
 import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
 import { Box, VStack, Text, Heading } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
 import { minifyAddress } from "../utils/utils.js";
+import { getActiveRoom } from "../utils/database/rooms.js";
+import { addPlayerToRoom, addUser } from "../utils/database/users.js";
 
 const JoinedGameSuccess = ({ address }: { address: string }) => (
   <Box
@@ -47,33 +49,81 @@ const JoinGameError = () => (
   </Box>
 );
 
-// Intents that should be used in both success and error states.
-const intents: FrameIntent[] = [
-  <Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>,
-  <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
-];
+/**
+ * Adding a user to the game.
+ * 1. Get the user's address from the FID.
+ * 2. Add the user to the database.
+ * 3. Add the user to the room.
+ *
+ * @returns The user's evm address
+ */
+const addUserToGameFlow = async ({
+  farcaster_id,
+  room_slug,
+}: {
+  room_slug: string;
+  farcaster_id: number;
+}): Promise<{ result: { address: string } } | { error: any }> => {
+  try {
+    const { address, username } = await getUserDataByFID(farcaster_id);
+    console.log("User", address, username);
+    // Add the user to the database
+    const userData = await addUser({
+      id: address,
+      farcaster_id: farcaster_id.toString(),
+      name: username,
+    });
+    if ("error" in userData) throw userData.error;
+
+    // Get the active room
+    const room = await getActiveRoom(room_slug);
+    if (!room) throw new Error("No active room found");
+
+    const addedToRoom = await addPlayerToRoom({
+      slug: room.slug,
+      room_params_id: room.params_id,
+      player_id: address,
+    });
+    if ("error" in addedToRoom) throw addedToRoom.error;
+
+    return { result: { address } };
+  } catch (error) {
+    console.error(error);
+    return { error };
+  }
+};
 
 const joinGameFrame: FrameHandler = async (frameContext) => {
-  // If we get the users address, we add them to the game.
-  if (frameContext.verified && frameContext.frameData) {
-    const address = await getConnectedAddressForUser(
-      frameContext.frameData.fid
-    );
+  try {
+    // If we don't have a verified user, we show the error message.
+    if (!frameContext.verified || !frameContext.frameData) {
+      throw new Error("User not verified");
+    }
+    const user = await addUserToGameFlow({
+      room_slug: "default",
+      farcaster_id: frameContext.frameData.fid,
+    });
+    if ("error" in user) throw user.error;
     return frameContext.res({
-      image: <JoinedGameSuccess address={address} />,
-      intents: intents,
+      image: <JoinedGameSuccess address={user.result.address} />,
+      intents: [
+        <Button action={TARGET_ROUTES.JOIN_GAME}>Refresh</Button>,
+        <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
+      ],
+    });
+  } catch (error) {
+    // If not, we display "must have connected wallet" message.
+    return frameContext.res({
+      image: <JoinGameError />,
+      intents: [
+        <Button action={TARGET_ROUTES.JOIN_GAME}>Join Game</Button>,
+        <Button action={TARGET_ROUTES.VIEW_GAME_RESULTS}>View Results</Button>,
+        <Button.Link href="https://warpcast.com/drilkmops">
+          @drilkmops
+        </Button.Link>,
+      ],
     });
   }
-  // If not, we display "must have connected wallet" message.
-  return frameContext.res({
-    image: <JoinGameError />,
-    intents: [
-      ...intents,
-      <Button.Link href="https://warpcast.com/drilkmops">
-        @drilkmops
-      </Button.Link>,
-    ],
-  });
 };
 
 const joinGameRoute: RoutedFrames = {

@@ -1,19 +1,17 @@
 import abi from "./degen-abi.json";
-import { PublicClient } from "viem";
-
-export const DEGEN_CONTRACT = "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed";
-const CONTRACT = DEGEN_CONTRACT;
+import { Address, PublicClient } from "viem";
 
 export async function checkBalance(
   client: PublicClient,
-  address: any
+  contract_address: Address,
+  evm_address: Address,
 ): Promise<number | { error: unknown }> {
   try {
     const balance = await client.readContract({
-      address: CONTRACT,
+      address: contract_address,
       abi: abi,
       functionName: "balanceOf",
-      args: [address],
+      args: [evm_address],
     });
     const readableBalance = Number(balance);
     return readableBalance;
@@ -23,10 +21,13 @@ export async function checkBalance(
   }
 }
 
-export async function remainingSupply(client: PublicClient) {
+export async function remainingSupply(
+  client: PublicClient,
+  contract_address: Address,
+) {
   try {
     const balance = await client.readContract({
-      address: CONTRACT,
+      address: contract_address,
       abi: abi,
       functionName: "totalSupply",
     });

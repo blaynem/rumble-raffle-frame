@@ -1,41 +1,11 @@
-import { Activities, Players, Prisma, Users } from "@prisma/client";
-import { prisma } from "./client.js";
+import { Activities, Prisma } from "@prisma/client";
 import { ActivityTypes } from "../../../RumbleRaffle/types/activity.js";
+import { prisma } from "./client.js";
 
-/**
- * Create or update a user in the database.
- */
-export const addUser = async (
-  user: Prisma.UsersCreateInput,
-): Promise<Users> => {
-  return await prisma.users.upsert({
+export const getActiveRoom = async (room_slug: string) =>
+  prisma.rooms.findFirst({
     where: {
-      id: user.id,
-    },
-    update: user,
-    create: user,
-  });
-};
-
-/**
- * Add a player to a room.
- */
-export const addPlayerToRoom = async (
-  player: Prisma.PlayersCreateInput,
-): Promise<Players> =>
-  await prisma.players.create({
-    data: player,
-  });
-
-/**
- * Get all players for a given room.
- */
-export const getAllPlayersOfRoom = async (
-  roomId: string,
-): Promise<Players[]> =>
-  await prisma.players.findMany({
-    where: {
-      slug: roomId,
+      slug: room_slug,
     },
   });
 
@@ -77,29 +47,23 @@ export const getAllActivities = async (): Promise<{
   };
 };
 
-/**
- * Create a room in the database.
- * @param slug - The room slug.
- * @param params - The room parameters.
- * @param contract_address - The contract address tied to the room.
- * @returns
- */
 export const createRoom = async (
-  slug: string,
-  params: Prisma.RoomParamsCreateInput,
+  room_slug: string,
+  params: Pick<Prisma.RoomParamsCreateInput, "pve_chance" | "revive_chance">,
   contract_address: string,
+  /**
+   * Must be an EVM compatible address.
+   */
+  createdBy: string,
 ) => {
-  const createdBy = "PLACEHOLDER_USER_ID";
-
   const roomsUpsert: Prisma.RoomsUpsertArgs = {
     where: {
-      slug: slug,
+      slug: room_slug,
     },
     update: {
       Params: {
         create: {
-          pve_chance: params.pve_chance,
-          revive_chance: params.revive_chance,
+          ...params,
           ...(createdBy && {
             Creator: {
               connect: {
@@ -116,7 +80,7 @@ export const createRoom = async (
       },
     },
     create: {
-      slug: slug,
+      slug: room_slug,
       Params: {
         create: {
           ...params,
