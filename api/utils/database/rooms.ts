@@ -89,6 +89,8 @@ export const createOrUpdateRoom = async ({
   | { error: any }
 > => {
   try {
+    const currentRoom = await getActiveRoomWithParams(room_slug);
+    const _current_params_id = currentRoom?.Params.id;
     // Lowercase the addresses
     const _createdBy = createdBy.toLowerCase();
     const _contract_address = contract_address.toLowerCase();
@@ -101,9 +103,18 @@ export const createOrUpdateRoom = async ({
         },
       },
       update: {
+        // if _current_params_id is undefined, we need to remove it from the prisma call. otherwise it errors.
+        ...(_current_params_id && {
+          PrevParams: {
+            connect: {
+              id: _current_params_id,
+            },
+          },
+        }),
         Params: {
           create: {
             ...params,
+            room_slug,
             Creator: {
               connect: {
                 id: _createdBy,
@@ -122,6 +133,7 @@ export const createOrUpdateRoom = async ({
         Params: {
           create: {
             ...params,
+            room_slug,
             Creator: {
               connect: {
                 id: _createdBy,

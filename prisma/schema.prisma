@@ -136,6 +136,7 @@ model RoomParams {
     game_started   Boolean? @default(false)
     game_completed Boolean? @default(false)
     winners        String[]
+    room_slug      String   @db.VarChar(100)
     // Has Relations
     created_by     String?  @db.VarChar(45) // evm compatible address
     contract_id    String   @db.VarChar(45)
@@ -145,10 +146,11 @@ model RoomParams {
     Contract Contracts @relation(fields: [contract_id], references: [contract_address])
 
     // Opposite Relation
-    Rooms    Rooms[]
-    Payouts  Payouts[]
-    Players  Players[]
-    GameLogs GameRoundLogs[]
+    RoomsCurrent Rooms[]         @relation("CurrentParams")
+    RoomsPrev    Rooms[]         @relation("PrevParams")
+    Payouts      Payouts[]
+    Players      Players[]
+    GameLogs     GameRoundLogs[]
 }
 
 model Rooms {
@@ -158,10 +160,13 @@ model Rooms {
     slug       String   @unique @db.VarChar(100)
 
     // Has Relations
-    params_id String @db.Uuid
+    params_id           String  @db.Uuid
+    /// The params id used for the last game.
+    last_game_params_id String? @db.Uuid
 
     // Define Relations
-    Params RoomParams @relation(fields: [params_id], references: [id])
+    Params     RoomParams  @relation("CurrentParams", fields: [params_id], references: [id])
+    PrevParams RoomParams? @relation("PrevParams", fields: [last_game_params_id], references: [id])
 }
 
 model Users {
