@@ -4,7 +4,7 @@ import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
 import { Box, VStack, Text, Heading } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
-import { minifyAddress } from "../utils/utils.js";
+import { minifyAddress, timeUntilNextRumble } from "../utils/utils.js";
 import { getActiveRoomWithParams } from "../utils/database/rooms.js";
 import { addPlayerToRoom, addUser } from "../utils/database/users.js";
 import { getPlayerCount } from "../utils/database/players.js";
@@ -26,7 +26,7 @@ const JoinedGameSuccess = ({
     <VStack>
       <BETAHeading />
       <Text>
-        Next Rumble starts in 12 min.{" "}
+        Next Rumble starts in {timeUntilNextRumble()}.{" "}
         {entrantCount && `Entrants: ${entrantCount}`}
       </Text>
       <Box flexDirection="row" gap={"2"}>

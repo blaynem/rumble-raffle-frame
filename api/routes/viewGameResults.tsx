@@ -5,26 +5,30 @@ import { RoutedFrames } from "../types.js";
 import { Box, Text, Divider, Spacer, Columns, Column } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
 import { getPlayerCount } from "../utils/database/players.js";
-import { getActiveRoomWithParams } from "../utils/database/rooms.js";
+import {
+  getActiveRoomWithParams,
+  getRoomParamsByParamsId,
+} from "../utils/database/rooms.js";
 import {
   SpecificPlayerLogsFrame,
   getPlayersByIds,
   getPlayersGameLogs,
 } from "../utils/database/gameLogs.js";
+import { timeUntilNextRumble } from "../utils/utils.js";
 
 // TODO: Show activity details in the frame
 
 const ViewResultsSuccess = ({
   winners,
   participated,
-  entrantCount,
+  currentEntrants,
 }: {
   /**
    * List of winners
    */
   winners: string[] | null;
   participated?: SpecificPlayerLogsFrame;
-  entrantCount: number;
+  currentEntrants: number;
 }) => (
   <Box grow background="rumbleBgDark" color="rumbleNone" padding={"16"}>
     <Columns gap="8">
@@ -34,7 +38,8 @@ const ViewResultsSuccess = ({
       <Column>
         <Box grow alignContent="center" alignVertical="center">
           <Text>
-            Next Rumble in 12 min. {entrantCount && `Entrants: ${entrantCount}`}
+            Next Rumble in {timeUntilNextRumble()}.{" "}
+            {currentEntrants && `Entrants: ${currentEntrants}`}
           </Text>
         </Box>
       </Column>
@@ -111,6 +116,11 @@ const ViewResultsSuccess = ({
                 </Text>
               );
             })}
+            {!participated && (
+              <Text>
+                This is where you'd see results.. if you clicked join!
+              </Text>
+            )}
           </Column>
         </Columns>
       </Box>
@@ -127,13 +137,27 @@ const intents: FrameIntent[] = [
 ];
 
 const viewGameResultsFrame: FrameHandler = async (frameContext) => {
+  // If the current room is game completed, we show the current room.
+  // If it's not completed, then we show the previous one.
   try {
     const activeRoom = await getActiveRoomWithParams("default");
     if (!activeRoom) throw new Error("No active room found");
-
     const playercount = await getPlayerCount(activeRoom.params_id);
-    const entrantCount = ("result" in playercount && playercount.result) || 0;
-    const winners = await getPlayersByIds(activeRoom.Params.winners);
+    const currentEntrants =
+      ("result" in playercount && playercount.result) || 0;
+
+    const resultsParamId = activeRoom.Params.game_completed
+      ? activeRoom.params_id
+      : activeRoom.last_game_params_id;
+    if (!resultsParamId) throw new Error("No previous room found");
+
+    const pastGameData =
+      resultsParamId === activeRoom.params_id
+        ? activeRoom.Params
+        : await getRoomParamsByParamsId(resultsParamId);
+
+    if (!pastGameData) throw new Error("No past game data found");
+    const winners = await getPlayersByIds(pastGameData?.winners);
 
     let address = "";
     let participated: SpecificPlayerLogsFrame | undefined;
@@ -141,7 +165,7 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
     // If we get the users address, we add them to the game.
     if (frameContext.verified && frameContext.frameData) {
       address = await getConnectedAddressForUser(frameContext.frameData.fid);
-      participated = await getPlayersGameLogs(activeRoom.params_id, address);
+      participated = await getPlayersGameLogs(resultsParamId, address);
     }
 
     return frameContext.res({
@@ -149,7 +173,7 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
         <ViewResultsSuccess
           participated={participated}
           winners={winners.map((w) => w.name || "Unknown")}
-          entrantCount={entrantCount}
+          currentEntrants={currentEntrants}
         />
       ),
       intents: intents,
@@ -157,7 +181,7 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
   } catch (error) {
     console.error("viewGameResultsFrame error: ", error);
     return frameContext.res({
-      image: <ViewResultsSuccess winners={null} entrantCount={0} />,
+      image: <ViewResultsSuccess winners={null} currentEntrants={0} />,
       intents: intents,
     });
   }
