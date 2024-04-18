@@ -141,16 +141,8 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
     // If we get the users address, we add them to the game.
     if (frameContext.verified && frameContext.frameData) {
       address = await getConnectedAddressForUser(frameContext.frameData.fid);
-      address = "0xd0dc1223cbe7af98469d05edee2dd789acb076d2";
       participated = await getPlayersGameLogs(activeRoom.params_id, address);
     }
-
-    console.log({
-      xwinners: activeRoom.Params.winners,
-      winners,
-      placement: participated?.placement,
-      kills: participated?.totalKillCount,
-    });
 
     return frameContext.res({
       image: (
