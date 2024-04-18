@@ -63,7 +63,10 @@ export const parseActivityLogForClient = (
     .map((round) => {
       // If winner is in round, that means its the WinnerLog type
       if ("winner" in round) {
-        winners = [round.winner, ...round.runnerUps];
+        // TODO: The runnerUps is actually the entire list of players and their placement.
+        //      We should rename this inside RumbleRaffle itself to be placement so it makes more sense.
+        // Also we are only going to take the first 5 runner ups here.
+        winners = [round.winner, ...round.runnerUps.slice(0, 5)];
         // Return null so we don't add the Winner log to the rounds
         return null;
       }

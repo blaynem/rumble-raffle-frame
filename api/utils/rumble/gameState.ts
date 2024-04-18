@@ -1,10 +1,8 @@
 import { RumbleRaffle } from "../../../RumbleRaffle/index.js";
+import { getAllActivities } from "../database/activities.js";
 import { prisma } from "../database/client.js";
 import { getAllPlayersOfRoom } from "../database/players.js";
-import {
-  getActiveRoomWithParams,
-  getAllActivities,
-} from "../database/rooms.js";
+import { getActiveRoomWithParams } from "../database/rooms.js";
 import {
   parseActivityLogForClient,
   parseActivityLogForDbPut,

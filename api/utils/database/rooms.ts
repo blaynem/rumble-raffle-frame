@@ -1,8 +1,4 @@
-import { Activities, Prisma } from "@prisma/client";
-import {
-  ActivitiesObjType,
-  ActivityTypes,
-} from "../../../RumbleRaffle/types/activity.js";
+import { Prisma } from "@prisma/client";
 import { prisma } from "./client.js";
 
 export const getActiveRoomWithParams = async (room_slug: string) =>
@@ -19,39 +15,12 @@ export const getActiveRoomWithParams = async (room_slug: string) =>
     },
   });
 
-const convertKillCountToNum = (data: Activities): ActivityTypes => ({
-  ...data,
-  killCounts: data.killCounts.map((k) => k.toNumber()),
-});
-
-/**
- * Get all activities from the database.
- */
-export const getAllActivities = async (): Promise<ActivitiesObjType> => {
-  const pveData: ActivityTypes[] = (await prisma.activities.findMany({
+export const getRoomParamsByParamsId = async (params_id: string) =>
+  prisma.roomParams.findFirst({
     where: {
-      environment: "PVE",
+      id: params_id,
     },
-  })).map(convertKillCountToNum);
-
-  const pvpData: ActivityTypes[] = (await prisma.activities.findMany({
-    where: {
-      environment: "PVP",
-    },
-  })).map(convertKillCountToNum);
-
-  const reviveData: ActivityTypes[] = (await prisma.activities.findMany({
-    where: {
-      environment: "REVIVE",
-    },
-  })).map(convertKillCountToNum);
-
-  return {
-    PVE: pveData,
-    PVP: pvpData,
-    REVIVE: reviveData,
-  };
-};
+  });
 
 /**
  * Method to create or update a room and it's params in the db.
