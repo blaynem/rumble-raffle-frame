@@ -47,7 +47,7 @@ export const fetchRoundLogsOfPlayer = async (
  * - What placement the player came in in the rumble
  */
 
-type SpecificPlayerLogsFrame = {
+export type SpecificPlayerLogsFrame = {
   activityDetails: {
     round_counter: number;
     activity_order: number;
@@ -56,6 +56,10 @@ type SpecificPlayerLogsFrame = {
      */
     description: string;
     type: Environment;
+    /**
+     * True if the player survived the activity.
+     */
+    survived: boolean;
   }[];
   /**
    * Placement of the player in the rumble. -1 if not a winner.
@@ -65,6 +69,12 @@ type SpecificPlayerLogsFrame = {
   totalKillCount: number;
 };
 
+/**
+ * Fetches all logs of a player in a given room_param_id, and returns a more readable view for the client.
+ * @param room_params_id - The room params id
+ * @param player_id - The player id
+ * @returns Actiivity Details, Placement, Total Kill Count
+ */
 export const getPlayersGameLogs = async (
   room_params_id: string,
   player_id: string,
@@ -105,7 +115,18 @@ export const getPlayersGameLogs = async (
         }
         return part;
       });
+
+      const activityParticipantIndex = log.participants.findIndex(
+        (p) => p === player_id,
+      );
+      // Player survives if their player index is not in the log.loser array
+      const survived = !log.Activity.activityLoser.includes(
+        activityParticipantIndex,
+      );
+      const killCount = log.Activity.killCounts[activityParticipantIndex];
+      totalKillCount += +killCount;
       return {
+        survived,
         round_counter: log.round_counter,
         activity_order: log.activity_order,
         description: replaceNames.join(""),
@@ -125,8 +146,11 @@ export const getPlayersGameLogs = async (
   };
 };
 
+/**
+ * Returns in the correct order.
+ */
 export const getPlayersByIds = async (ids: string[]) => {
-  return prisma.users.findMany({
+  const returnedData = await prisma.users.findMany({
     where: {
       id: {
         in: ids,
@@ -137,4 +161,7 @@ export const getPlayersByIds = async (ids: string[]) => {
       name: true,
     },
   });
+  return ids.map((id) =>
+    returnedData.find((d) => d.id === id) || { id, name: null }
+  );
 };

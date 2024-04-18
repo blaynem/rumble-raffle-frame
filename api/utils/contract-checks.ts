@@ -34,7 +34,7 @@ export async function remainingSupply(
     const readableBalance = Number(balance);
     return readableBalance;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return error;
   }
 }

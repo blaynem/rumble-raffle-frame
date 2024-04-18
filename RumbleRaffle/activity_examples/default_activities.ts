@@ -383,8 +383,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "db3233a5-3438-4184-b016-94dc7e892c4f",
-      "description":
-        "PLAYER_0 fell head first into a very small elephant, dying immediately.",
+      "description": "PLAYER_0 fell head first into a very small elephant.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -395,8 +394,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "305f7392-3e09-4a01-aa49-821086a11e6e",
-      "description":
-        "PLAYER_0 fell head first into an egg beater, dying immediately.",
+      "description": "PLAYER_0 fell head first into an egg beater.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -407,8 +405,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "03cfe065-0916-4f8a-8bca-0dcb8fe5a99f",
-      "description":
-        "PLAYER_0 fell head first into a banana, dying immediately.",
+      "description": "PLAYER_0 fell head first into a banana.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -420,7 +417,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "4b8d0958-f3b8-43f7-b5be-e0bfdff9a686",
       "description":
-        "PLAYER_0 fell head first into a key for a 1997 Toyota Camry, dying immediately.",
+        "PLAYER_0 fell head first into a key for a 1997 Toyota Camry.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -431,8 +428,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "437512b1-2852-48c1-a432-f46699e38bfe",
-      "description":
-        "PLAYER_0 fell head first into a webcam from 2004, dying immediately.",
+      "description": "PLAYER_0 fell head first into a webcam from 2004.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -443,7 +439,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "71b59c55-678f-4e07-8a8d-6bc7a1f9dcad",
-      "description": "PLAYER_0 fell head first into a shoe, dying immediately.",
+      "description": "PLAYER_0 fell head first into a shoe.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -454,7 +450,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "a7caecd3-9719-4de2-9dd3-07cae80dddd2",
-      "description": "PLAYER_0 fell head first into a slap, dying immediately.",
+      "description": "PLAYER_0 fell head first into a slap.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -465,8 +461,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "8f0b5ef7-32b8-4c2c-a4c2-b7d3a5253900",
-      "description":
-        "PLAYER_0 fell head first into a dollar bill, dying immediately.",
+      "description": "PLAYER_0 fell head first into a dollar bill.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -477,8 +472,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "0ee07790-7059-42dd-a411-ee86dfe4df4c",
-      "description":
-        "PLAYER_0 fell head first into a raygun, dying immediately.",
+      "description": "PLAYER_0 fell head first into a raygun.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -489,8 +483,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "79af6020-c58f-4005-a11c-0e1f3e990e3f",
-      "description":
-        "PLAYER_0 fell head first into a jail key, dying immediately.",
+      "description": "PLAYER_0 fell head first into a jail key.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -501,8 +494,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "519d1f40-e05a-4cc5-afca-4a1b164a17f9",
-      "description":
-        "PLAYER_0 fell head first into a crusty pair of socks, dying immediately.",
+      "description": "PLAYER_0 fell head first into a crusty pair of socks.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -513,8 +505,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "55fe3092-43d8-4654-a553-5ff5dd638760",
-      "description":
-        "PLAYER_0 fell head first into a slingshot, dying immediately.",
+      "description": "PLAYER_0 fell head first into a slingshot.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -525,7 +516,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "adf09eab-8c02-4bc9-9a4c-410f8e560567",
-      "description": "PLAYER_0 fell head first into dirt, dying immediately.",
+      "description": "PLAYER_0 fell head first into dirt.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -536,7 +527,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "bd27782e-3612-4a51-8db4-8181df9a5159",
-      "description": "PLAYER_0 fell head first into bb gun, dying immediately.",
+      "description": "PLAYER_0 fell head first into bb gun.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -547,8 +538,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "9cb05a6d-ce16-42b3-8aae-093bd1935d24",
-      "description":
-        "PLAYER_0 fell head first into barbed wire, dying immediately.",
+      "description": "PLAYER_0 fell head first into barbed wire.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -559,7 +549,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "3637ef53-cb5b-4101-8951-cc8adf53921f",
-      "description": "PLAYER_0 smelled their own fart, dying immediately.",
+      "description": "PLAYER_0 smelled their own fart.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -570,8 +560,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "f6356a23-d20a-43f9-ac5d-a9a92e0c1d87",
-      "description":
-        "PLAYER_0 fell head first into smelly feet, dying immediately.",
+      "description": "PLAYER_0 fell head first into smelly feet.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -582,8 +571,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "9ec85a3d-dad0-4b41-8d7f-f8a41f9e762f",
-      "description":
-        "PLAYER_0 fell head first into a cucumber, dying immediately.",
+      "description": "PLAYER_0 fell head first into a cucumber.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -594,8 +582,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "93d10170-0e85-4d7c-b16d-b504b9658a1c",
-      "description":
-        "PLAYER_0 fell head first into a tomato, dying immediately.",
+      "description": "PLAYER_0 fell head first into a tomato.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -606,8 +593,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "1a8073b6-90ad-4317-ae85-8c5948cdef5c",
-      "description":
-        "PLAYER_0 fell head first into a toothpick, dying immediately.",
+      "description": "PLAYER_0 fell head first into a toothpick.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -618,8 +604,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "42153176-69d0-49f9-a13b-bc233d74c4ec",
-      "description":
-        "PLAYER_0 fell head first into some rusty nails, dying immediately.",
+      "description": "PLAYER_0 fell head first into some rusty nails.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -631,7 +616,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "f269159c-61a3-4204-9eb0-05d894d8c418",
       "description":
-        "PLAYER_0 fell head first into a dump truck full of dog poop bags, dying immediately.",
+        "PLAYER_0 fell head first into a dump truck full of dog poop bags.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -642,8 +627,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "b59c74e2-9d5a-4548-807c-7f5f584a2b4d",
-      "description":
-        "PLAYER_0 fell head first into a swarm of bees, dying immediately.",
+      "description": "PLAYER_0 fell head first into a swarm of bees.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -654,8 +638,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "72538638-ef20-4933-9977-99322766234c",
-      "description":
-        "PLAYER_0 fell head first into a sinkhole, dying immediately.",
+      "description": "PLAYER_0 fell head first into a sinkhole.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -666,8 +649,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "70fe11b9-54fc-499c-8bc3-c0709797e188",
-      "description":
-        "PLAYER_0 fell head first into a well trained goat, dying immediately.",
+      "description": "PLAYER_0 fell head first into a well trained goat.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -678,8 +660,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "a7b8f389-c0b1-4009-90fe-b5a370326be4",
-      "description":
-        "PLAYER_0 fell head first into a knife, dying immediately.",
+      "description": "PLAYER_0 fell head first into a knife.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -690,8 +671,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "e892eb5a-4c5d-4faa-8ccf-587aef4a96f9",
-      "description":
-        "PLAYER_0 fell head first into a chickens talons, dying immediately.",
+      "description": "PLAYER_0 fell head first into a chickens talons.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -702,8 +682,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "41f9f094-6fa0-4848-bfca-b1624985f597",
-      "description":
-        "PLAYER_0 fell head first into a tennis racket, dying immediately.",
+      "description": "PLAYER_0 fell head first into a tennis racket.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -714,8 +693,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "3c0f6201-f6ba-4e92-a2fa-5b054bb44531",
-      "description":
-        "PLAYER_0 fell head first into a monkey, dying immediately.",
+      "description": "PLAYER_0 fell head first into a monkey.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -726,8 +704,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "aa703e32-6026-42cb-ad08-63aea485df88",
-      "description":
-        "PLAYER_0 fell head first into a floppy disk, dying immediately.",
+      "description": "PLAYER_0 fell head first into a floppy disk.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -738,8 +715,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "687ba943-e2ba-4d61-95dd-9296deca196a",
-      "description":
-        "PLAYER_0 fell head first into a used macbook pro, dying immediately.",
+      "description": "PLAYER_0 fell head first into a used macbook pro.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -750,8 +726,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "cb0ffed6-ba7c-4778-8126-6387b913ffee",
-      "description":
-        "PLAYER_0 fell head first into some pencil shavings, dying immediately.",
+      "description": "PLAYER_0 fell head first into some pencil shavings.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -762,8 +737,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "0fbcc0e5-9750-494a-8917-6bcb411d82c0",
-      "description":
-        "PLAYER_0 fell head first into a bag of milky ways, dying immediately.",
+      "description": "PLAYER_0 fell head first into a bag of milky ways.",
       "amountOfPlayers": 1,
       "activityLoser": [
         0,
@@ -991,8 +965,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "37b462cb-50e5-4f9a-af2e-19d5dbef2abe",
-      "description":
-        "PLAYER_0 stuck a banana into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a banana into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1009,7 +982,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "c3cf029c-ea02-4bce-9572-478bef918f68",
       "description":
-        "PLAYER_0 stuck a key for a 1997 Toyota Camry into PLAYER_1's ear. Sounds painful.",
+        "PLAYER_0 stuck a key for a 1997 Toyota Camry into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1025,8 +998,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "02b2e91d-8592-45dc-8a77-b06aa8febca5",
-      "description":
-        "PLAYER_0 stuck a webcam from 2004 into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a webcam from 2004 into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1042,8 +1014,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "6500598c-db56-419a-b845-53d006f6f1c2",
-      "description":
-        "PLAYER_0 stuck a shoe into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a shoe into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1060,7 +1031,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "d354e279-c9e9-4b9e-b9f3-c8d19085999c",
       "description":
-        "PLAYER_0 stuck a very small elephant into PLAYER_1's ear. Sounds painful.",
+        "PLAYER_0 stuck a very small elephant into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1076,8 +1047,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "14f07882-f1cc-442f-8bef-32d23f2f4c2b",
-      "description":
-        "PLAYER_0 stuck an egg beater into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck an egg beater into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1093,8 +1063,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "8ce2c711-2774-4122-ae7c-5ce7bfffd9eb",
-      "description":
-        "PLAYER_0 stuck a dollar bill into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a dollar bill into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1110,8 +1079,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "06caa560-239f-42f2-a9cf-70a5292aa38d",
-      "description":
-        "PLAYER_0 shot a raygun into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 shot a raygun into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1127,8 +1095,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "dc88004b-f261-44c1-a30b-a46fb2ec0009",
-      "description":
-        "PLAYER_0 stuck a jail key into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a jail key into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1145,7 +1112,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "21a6391e-3ec1-4550-9c53-f56c5ca9e4d0",
       "description":
-        "PLAYER_0 stuck a crusty pair of socks into PLAYER_1's ear. Sounds painful.",
+        "PLAYER_0 stuck a crusty pair of socks into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1161,8 +1128,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "d7b4ac20-95e1-4f4c-a071-e5b0d49570f0",
-      "description":
-        "PLAYER_0 shot a slingshot into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 shot a slingshot into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1178,7 +1144,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "df9238f0-0117-44bc-ae75-81ab20110d50",
-      "description": "PLAYER_0 stuck dirt into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck dirt into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1194,8 +1160,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "a99a71d7-686e-459e-9c7c-1c8583dd5558",
-      "description":
-        "PLAYER_0 stuck bb gun pellets into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck bb gun pellets into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1211,8 +1176,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "99c5d746-50e6-4b01-8af9-e8393e1d85a5",
-      "description":
-        "PLAYER_0 stuck barbed wire into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck barbed wire into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1245,8 +1209,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "b00c147d-6907-41b4-955c-b414f6927f3e",
-      "description":
-        "PLAYER_0 stuck their smelly feet into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck their smelly feet into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1262,8 +1225,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "09af0f27-f7d5-4f02-ae21-8aafa3fb43d0",
-      "description":
-        "PLAYER_0 stuck a cucumber into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a cucumber into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1279,8 +1241,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "d13c0082-7157-4c0a-ac58-2dbe66e53ef1",
-      "description":
-        "PLAYER_0 stuck a tomato into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a tomato into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1296,8 +1257,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "1bac7e24-361d-43fd-b5a7-cfed5bca281b",
-      "description":
-        "PLAYER_0 stuck a toothpick into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a toothpick into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1313,8 +1273,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "1bf31827-9ece-48b7-86bb-2e57ffa666aa",
-      "description":
-        "PLAYER_0 stuck some rusty nails into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck some rusty nails into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1330,8 +1289,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "011bb98b-8ebd-44d1-b7dd-14aec6a59db4",
-      "description":
-        "PLAYER_0 stuck a swarm of bees into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a swarm of bees into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1347,8 +1305,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "97c581d0-d3bd-4150-97d3-ad8c84959474",
-      "description":
-        "PLAYER_0 stuck a knife into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a knife into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1364,8 +1321,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "7215e5b0-2378-4e66-9695-df7c1057f85f",
-      "description":
-        "PLAYER_0 stuck a chickens talons into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a chickens talons into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1381,8 +1337,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "83e99ab3-7161-4bac-9905-6dde0dba9655",
-      "description":
-        "PLAYER_0 stuck a tennis racket into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a tennis racket into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1398,8 +1353,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "9293d002-f70e-4b3f-be2d-6deca615b2b1",
-      "description":
-        "PLAYER_0 stuck a monkey into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a monkey into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1415,8 +1369,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "0d6b9d51-ec03-4804-843f-be16d73bd0f0",
-      "description":
-        "PLAYER_0 stuck a floppy disk into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a floppy disk into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1432,8 +1385,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "fbfc5a5e-30a0-4e85-acf7-f858b9134a43",
-      "description":
-        "PLAYER_0 stuck a used macbook pro into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a used macbook pro into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1449,8 +1401,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "110ed143-a300-4348-9311-9305b3ae7479",
-      "description":
-        "PLAYER_0 stuck some pencil shavings into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck some pencil shavings into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1466,8 +1417,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "835770ba-57f0-4dd2-865f-784c527f7cf5",
-      "description":
-        "PLAYER_0 stuck a well trained goat into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a well trained goat into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1483,8 +1433,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "12db344d-ec23-4d79-b5a9-f278c5392a9b",
-      "description":
-        "PLAYER_0 stuck a bag of milky ways into PLAYER_1's ear. Sounds painful.",
+      "description": "PLAYER_0 stuck a bag of milky ways into PLAYER_1's ear.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1501,7 +1450,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "e3f25972-5349-4d63-9d1b-d74714d9d998",
       "description":
-        "PLAYER_0 climbed a tree and dropped a banana onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a banana onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1518,7 +1467,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "f767db4c-f128-4ece-a451-37a597225a12",
       "description":
-        "PLAYER_0 climbed a tree and dropped a key for a 1997 Toyota Camry onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a key for a 1997 Toyota Camry onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1535,7 +1484,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "6bbeec41-ea54-4882-a3a4-31bf2013cc57",
       "description":
-        "PLAYER_0 climbed a tree and dropped a webcam from 2004 onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a webcam from 2004 onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1552,7 +1501,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "1b010d3e-28b9-4054-b70e-f6c97dd5cafb",
       "description":
-        "PLAYER_0 climbed a tree and dropped a shoe onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a shoe onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1569,7 +1518,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "b899ec88-d2bf-40d8-b4bb-c12ee93b7943",
       "description":
-        "PLAYER_0 climbed a tree and dropped a very small elephant onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a very small elephant onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1586,7 +1535,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "a244c1b7-07dd-41a3-9b5b-b76d45cb52b4",
       "description":
-        "PLAYER_0 climbed a tree and dropped an egg beater onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped an egg beater onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1603,7 +1552,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "e288545d-c8d0-4e2c-a9c9-44ca1ed160bf",
       "description":
-        "PLAYER_0 jumped out from behind a tree and slapped PLAYER_1 who happened to be walking by. Their one true weakness.",
+        "PLAYER_0 jumped out from behind a tree and slapped PLAYER_1 who happened to be walking by.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1620,7 +1569,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "356de554-0c88-4c26-96c1-25f39903bac2",
       "description":
-        "PLAYER_0 climbed a tree and dropped a dollar bill onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a dollar bill onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1636,8 +1585,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "d90c9869-0dfb-4595-8592-479160765996",
-      "description":
-        "PLAYER_0 climbed a tree and shot a raygun at PLAYER_1. Their one true weakness.",
+      "description": "PLAYER_0 climbed a tree and shot a raygun at PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1654,7 +1602,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "6aceb788-bbd3-4cbe-9772-70010a206055",
       "description":
-        "PLAYER_0 climbed a tree and dropped a jail key onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a jail key onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1671,7 +1619,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "3990fbf8-226c-4a8b-a3be-b494674670a5",
       "description":
-        "PLAYER_0 climbed a tree and dropped a crusty pair of socks onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a crusty pair of socks onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1688,7 +1636,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "ca999562-6b15-4112-8071-011bf7187be5",
       "description":
-        "PLAYER_0 climbed a tree and dropped a slingshot onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a slingshot onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1739,7 +1687,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "0ada8f81-4d1a-404c-845b-e8e6f2060064",
       "description":
-        "PLAYER_0 climbed a tree and dropped barbed wire onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped barbed wire onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1773,7 +1721,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "764fba81-9a89-4b11-a7db-b4f1f6d75e20",
       "description":
-        "PLAYER_0 climbed a tree and kicked PLAYER_1 in the face with their smelly feet. Their one true weakness.",
+        "PLAYER_0 climbed a tree and kicked PLAYER_1 in the face with their smelly feet.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1824,7 +1772,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "405e119b-114a-4976-b22d-37cbd3df2776",
       "description":
-        "PLAYER_0 climbed a tree and dropped a bunch of sharpened toothpick onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a bunch of sharpened toothpick onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1841,7 +1789,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "d87ca6b6-5eb9-4084-9c2b-5f2beb690f00",
       "description":
-        "PLAYER_0 climbed a tree and dropped some rusty nails onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped some rusty nails onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1858,7 +1806,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "00544193-b486-4d2f-b7b6-92948fccba91",
       "description":
-        "PLAYER_0 climbed a tree and dropped a dump truck full of dog poop bags onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a dump truck full of dog poop bags onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1875,7 +1823,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "03cc6464-5196-409c-b81d-eb234c506072",
       "description":
-        "PLAYER_0 climbed a tree and dropped a swarm of bees onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a swarm of bees onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1892,7 +1840,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "b93c4d66-e1f2-43f2-8721-d8ce9f94daf0",
       "description":
-        "PLAYER_0 climbed a tree and dropped a well trained goat onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a well trained goat onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1909,7 +1857,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "7d0fb3ef-0011-4666-9000-9c5452ba6389",
       "description":
-        "PLAYER_0 climbed a tree and dropped a knife onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a knife onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1926,7 +1874,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "01029e9f-b1b8-4766-b247-018aff161d09",
       "description":
-        "PLAYER_0 climbed a tree and dropped a chickens talons onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a chickens talons onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1943,7 +1891,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "ab38b28a-f9c6-48b1-be98-e0e1f4e2a393",
       "description":
-        "PLAYER_0 climbed a tree and dropped a tennis racket onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a tennis racket onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1960,7 +1908,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "08183b99-b0ae-4dba-9ed4-3cc55d6cf2ad",
       "description":
-        "PLAYER_0 climbed a tree and dropped a monkey onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a monkey onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1977,7 +1925,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "c28da990-98f4-449e-8b96-4d42ef630cfd",
       "description":
-        "PLAYER_0 climbed a tree and dropped a floppy disk onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a floppy disk onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -1994,7 +1942,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "23824fe2-24fa-4a4a-9665-d5d6974e2642",
       "description":
-        "PLAYER_0 climbed a tree and dropped a used macbook pro onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped a used macbook pro onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -2011,7 +1959,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "4e2a6a2b-f9c2-4e79-84cf-4b7ec7a681c0",
       "description":
-        "PLAYER_0 climbed a tree and dropped some pencil shavings onto PLAYER_1. Their one true weakness.",
+        "PLAYER_0 climbed a tree and dropped some pencil shavings onto PLAYER_1.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -2044,8 +1992,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "0e7b27c8-8a4c-45ba-85a5-bb71397e9a3b",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a slingshot. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a slingshot.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -2061,8 +2008,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "9f78eb8f-c4f6-49ca-829b-985fac07af68",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with barbed wire. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with barbed wire.",
       "amountOfPlayers": 2,
       "activityLoser": [
         1,
@@ -2079,7 +2025,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "440a5956-59a9-4195-b2a8-eea8169d20b0",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with some pencil shavings. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with some pencil shavings.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2096,7 +2042,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "b5563ad0-ebdf-4380-8857-9efdc8c1ef87",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a used macbook pro. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a used macbook pro.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2113,7 +2059,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "4a4a55fa-df09-4bd3-a6ec-3985239ca076",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a floppy disk. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a floppy disk.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2129,8 +2075,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "f736b4cb-4e96-416c-8ae2-45fc7cc6dd23",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a monkey. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a monkey.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2147,7 +2092,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "6a816ce6-ad4d-4e13-8c09-36c40bc2c8d5",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a chickens talons. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a chickens talons.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2164,7 +2109,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "a182c2e6-b273-4210-b100-d988eb455d72",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a swarm of bees. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a swarm of bees.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2181,7 +2126,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "28a78a00-7a36-40e7-9346-99c09bef00a7",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with some rusty nails. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with some rusty nails.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2197,8 +2142,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "fe40fb63-0dce-476f-b8ae-24cddd462eca",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a toothpick. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a toothpick.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2214,8 +2158,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "d0689970-1cee-4202-82d7-85b91fc8b188",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a cucumber. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a cucumber.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2231,8 +2174,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "30c170dd-efff-4493-a1b1-76f3e4f36805",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with smelly feet. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with smelly feet.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2248,8 +2190,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "2c380bdd-fd30-401d-9468-1c5c183370f0",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a fart. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a fart.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2265,8 +2206,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "45caea53-731e-4905-8d19-04cc1d6b95b1",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with dirt. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with dirt.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2283,7 +2223,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "2f8732b2-2a83-4f63-a177-19e7ccab8669",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a crusty pair of socks. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a crusty pair of socks.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2299,8 +2239,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "7819c348-d5bb-4c32-a2de-df298b4d4efb",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a tomato. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a tomato.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2317,7 +2256,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "4fad878a-9b0f-44b6-b3cb-da7eb30377fc",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a dollar bill. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a dollar bill.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2333,8 +2272,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "a3fae8c3-0211-4375-80f8-a9203a81663d",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a slap. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a slap.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2351,7 +2289,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "d2e0fcb9-d2b0-4b15-8ccc-d62f994e9ccf",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a very small elephant. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a very small elephant.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2367,8 +2305,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "97cca674-853e-4403-8b79-d499838c0d93",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a shoe. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a shoe.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2385,7 +2322,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "47179b68-6148-41fa-87d3-44fda1a088ce",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a webcam from 2004. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a webcam from 2004.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2402,7 +2339,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "443c6ec9-e851-47e1-b08e-3fae9687c4b2",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a key for a 1997 Toyota Camry. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a key for a 1997 Toyota Camry.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2418,8 +2355,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "ab0517c5-2021-49c1-aca0-b77f3c01f4fb",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a banana. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a banana.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2435,8 +2371,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "dd211803-ffeb-476a-bc62-3d67ac3e65b9",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a jail key. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a jail key.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2453,7 +2388,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "b8651c42-333a-4d79-b14f-631345b9fb62",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a well trained goat. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a well trained goat.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2470,7 +2405,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "c1076b21-9ddf-4455-b7f7-8edffcd394ef",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a tennis racket. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a tennis racket.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2486,8 +2421,7 @@ export const defaultActivities: ActivitiesObjType = {
     },
     {
       "id": "b7dd0f5a-433d-4e25-9ba9-fd6bdfb9a898",
-      "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a knife. Impressive, yet gruesome.",
+      "description": "PLAYER_0's throat was slit by PLAYER_1 with a knife.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2504,7 +2438,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "5ec30715-fc05-4224-894a-6687d92c48ec",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with a bag of milky ways. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with a bag of milky ways.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,
@@ -2521,7 +2455,7 @@ export const defaultActivities: ActivitiesObjType = {
     {
       "id": "b4fd1195-76e9-47bf-95d4-439f201ad1af",
       "description":
-        "PLAYER_0's throat was slit by PLAYER_1 with an egg beater. Impressive, yet gruesome.",
+        "PLAYER_0's throat was slit by PLAYER_1 with an egg beater.",
       "amountOfPlayers": 2,
       "activityLoser": [
         0,

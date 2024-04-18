@@ -73,7 +73,9 @@ export const addUserToGameFlow = async ({
 }: {
   room_slug: string;
   farcaster_id: number;
-}): Promise<{ result: { address: string } } | { error: any }> => {
+}): Promise<
+  { result: { address: string; room_params_id: string } } | { error: any }
+> => {
   try {
     const { address, username } = await getUserDataByFID(farcaster_id);
     if (!address || !username) throw new Error("User not found");
@@ -96,7 +98,7 @@ export const addUserToGameFlow = async ({
     });
     if ("error" in addedToRoom) throw addedToRoom.error;
 
-    return { result: { address } };
+    return { result: { address, room_params_id: room.params_id } };
   } catch (error) {
     console.error(error);
     return { error };
@@ -110,19 +112,19 @@ const joinGameFrame: FrameHandler = async (frameContext) => {
       throw new Error("User not verified");
     }
 
-    const user = await addUserToGameFlow({
+    const data = await addUserToGameFlow({
       room_slug: "default",
       farcaster_id: frameContext.frameData.fid,
     });
-    if ("error" in user) throw user.error;
+    if ("error" in data) throw data.error;
 
-    const playercount = await getPlayerCount("default");
+    const playercount = await getPlayerCount(data.result.room_params_id);
     const entrantCount = ("result" in playercount && playercount.result) || 0;
 
     return frameContext.res({
       image: (
         <JoinedGameSuccess
-          address={user.result.address}
+          address={data.result.address}
           entrantCount={entrantCount}
         />
       ),

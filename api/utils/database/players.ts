@@ -1,16 +1,12 @@
 import { prisma } from "./client.js";
-import { getActiveRoomWithParams } from "./rooms.js";
 
 export const getPlayerCount = async (
-  room_slug: string,
+  room_params_id: string,
 ): Promise<{ result: number } | { error: any }> => {
   try {
-    const room = await getActiveRoomWithParams(room_slug);
-    if (!room) throw new Error("No active room found");
-
     const playerCount = await prisma.players.count({
       where: {
-        room_params_id: room.params_id,
+        room_params_id: room_params_id,
       },
     });
 

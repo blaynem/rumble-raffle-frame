@@ -2,61 +2,43 @@ import { Button, FrameHandler, FrameIntent } from "frog";
 import { getConnectedAddressForUser } from "../utils/pinata-calls.js";
 import { TARGET_ROUTES } from "../constants.js";
 import { RoutedFrames } from "../types.js";
-import { Box, Text, Divider, Spacer } from "../utils/ui.js";
+import { Box, Text, Divider, Spacer, Columns, Column } from "../utils/ui.js";
 import { BETAHeading } from "../components/BETAHeader.js";
 import { getPlayerCount } from "../utils/database/players.js";
+import { getActiveRoomWithParams } from "../utils/database/rooms.js";
+import {
+  SpecificPlayerLogsFrame,
+  getPlayersByIds,
+  getPlayersGameLogs,
+} from "../utils/database/gameLogs.js";
+
+// TODO: Show activity details in the frame
 
 const ViewResultsSuccess = ({
-  //   results = [],
-  //   participated = undefined,
-  results = ["wow", "test", "12", "1asda"],
-  participated = { placement: 1, kills: 3 },
-  entrantCount = 10,
+  winners,
+  participated,
+  entrantCount,
 }: {
-  results?: string[];
-  participated?: {
-    placement: number;
-    kills: number;
-  };
+  /**
+   * List of winners
+   */
+  winners: string[] | null;
+  participated?: SpecificPlayerLogsFrame;
   entrantCount: number;
 }) => (
-  <Box grow background="rumbleBgDark" color="rumbleNone">
-    <Box alignItems="center">
-      <BETAHeading />
-      <Text>
-        Next Rumble in 12 min. {entrantCount && `Entrants: ${entrantCount}`}
-      </Text>
-    </Box>
-    <Box
-      alignVertical="center"
-      alignItems="center"
-      paddingTop={"16"}
-      paddingLeft={"40"}
-      paddingRight={"40"}
-    >
-      <Box width="100%" paddingLeft={"40"} paddingRight={"40"}>
-        <Box alignItems="center">
-          <Text size="24" color="rumblePrimary">
-            Results
+  <Box grow background="rumbleBgDark" color="rumbleNone" padding={"16"}>
+    <Columns gap="8">
+      <Column>
+        <BETAHeading />
+      </Column>
+      <Column>
+        <Box grow alignContent="center" alignVertical="center">
+          <Text>
+            Next Rumble in 12 min. {entrantCount && `Entrants: ${entrantCount}`}
           </Text>
         </Box>
-        <Divider direction="horizontal" color={"rumblePrimary"} />
-        <Box>
-          {results.length > 0 ? (
-            results.map((result, i) => (
-              <Text size="16">
-                {i + 1}: {result}
-              </Text>
-            ))
-          ) : (
-            <Text size="16">
-              This is where i'd put my results... If I had any!!!
-            </Text>
-          )}
-        </Box>
-        <Spacer size="64" />
-      </Box>
-    </Box>
+      </Column>
+    </Columns>
     {participated && (
       <Box alignItems="center">
         <Box flexDirection="row">
@@ -66,17 +48,73 @@ const ViewResultsSuccess = ({
             {participated.placement}
           </Text>
           <Spacer size="8" />
-          <Text>Kills: </Text>
-          <Spacer size="4" />
-          <Text weight="700" color="rumblePrimary">
-            {participated.kills}
-          </Text>
+          {participated.totalKillCount > 0 && (
+            <Box flexDirection="row">
+              <Text>Kills: </Text>
+              <Spacer size="4" />
+              <Text weight="700" color="rumblePrimary">
+                {participated.totalKillCount}
+              </Text>
+            </Box>
+          )}
         </Box>
-        {participated.placement === 1 && (
-          <Text>Winner winner, chicken dinner!</Text>
+        {participated.placement == 1 && (
+          <Text weight="700">Winner winner, chicken dinner!</Text>
         )}
       </Box>
     )}
+    <Box
+      alignVertical="center"
+      alignItems="center"
+      paddingLeft={"40"}
+      paddingRight={"40"}
+    >
+      <Box width="100%">
+        <Box alignItems="center">
+          <Text size="24" color="rumblePrimary">
+            Results
+          </Text>
+        </Box>
+        <Divider direction="horizontal" color={"rumblePrimary"} />
+        <Columns gap="8">
+          <Column width="3/7">
+            {winners ? (
+              winners.map((winner, i) => (
+                <Box
+                  {...(i + 1 === participated?.placement && {
+                    fontWeight: "700",
+                    color: "rumblePrimary",
+                    backgroundColor: "rumbleOutline",
+                  })}
+                >
+                  <Text size="16">
+                    {i + 1}: {winner}
+                  </Text>
+                </Box>
+              ))
+            ) : (
+              <Text size="16">
+                This is where i'd put my results... If I had any!!!
+              </Text>
+            )}
+          </Column>
+          <Column overflow="hidden">
+            {participated?.activityDetails.map((activity) => {
+              let emoji: string = "";
+              if (activity.type === "REVIVE") emoji = "🙏";
+              if (activity.type === "PVP") emoji = "⚔️";
+              if (activity.type === "PVE") emoji = "🏕️";
+              if (!activity.survived) emoji = "💀";
+              return (
+                <Text>
+                  {emoji} {activity.description}
+                </Text>
+              );
+            })}
+          </Column>
+        </Columns>
+      </Box>
+    </Box>
   </Box>
 );
 
@@ -89,23 +127,48 @@ const intents: FrameIntent[] = [
 ];
 
 const viewGameResultsFrame: FrameHandler = async (frameContext) => {
-  const playercount = await getPlayerCount("default");
-  const entrantCount = ("result" in playercount && playercount.result) || 0;
-  // TODO: Make a fetch to the results API.
-  // If we get the users address, we add them to the game.
-  if (frameContext.verified && frameContext.frameData) {
-    const address = await getConnectedAddressForUser(
-      frameContext.frameData.fid
-    );
+  try {
+    const activeRoom = await getActiveRoomWithParams("default");
+    if (!activeRoom) throw new Error("No active room found");
+
+    const playercount = await getPlayerCount(activeRoom.params_id);
+    const entrantCount = ("result" in playercount && playercount.result) || 0;
+    const winners = await getPlayersByIds(activeRoom.Params.winners);
+
+    let address = "";
+    let participated: SpecificPlayerLogsFrame | undefined;
+    // TODO: Make a fetch to the results API.
+    // If we get the users address, we add them to the game.
+    if (frameContext.verified && frameContext.frameData) {
+      address = await getConnectedAddressForUser(frameContext.frameData.fid);
+      address = "0xd0dc1223cbe7af98469d05edee2dd789acb076d2";
+      participated = await getPlayersGameLogs(activeRoom.params_id, address);
+    }
+
+    console.log({
+      xwinners: activeRoom.Params.winners,
+      winners,
+      placement: participated?.placement,
+      kills: participated?.totalKillCount,
+    });
+
     return frameContext.res({
-      image: <ViewResultsSuccess entrantCount={entrantCount} />,
+      image: (
+        <ViewResultsSuccess
+          participated={participated}
+          winners={winners.map((w) => w.name || "Unknown")}
+          entrantCount={entrantCount}
+        />
+      ),
+      intents: intents,
+    });
+  } catch (error) {
+    console.error("viewGameResultsFrame error: ", error);
+    return frameContext.res({
+      image: <ViewResultsSuccess winners={null} entrantCount={0} />,
       intents: intents,
     });
   }
-  return frameContext.res({
-    image: <ViewResultsSuccess entrantCount={entrantCount} />,
-    intents: intents,
-  });
 };
 
 const viewGameResultsRoute: RoutedFrames = {
