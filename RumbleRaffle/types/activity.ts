@@ -1,4 +1,4 @@
-import type { allPlayersObj, PlayerType } from "./index.js";
+import type { allPlayersObj, PlayerType } from "./index";
 
 /**
  * Typings for the activities type PVE, PVP, and REVIVE object.

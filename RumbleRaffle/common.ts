@@ -3,7 +3,7 @@ import type {
   ActivityTypes,
   allPlayersObj,
   PlayerType,
-} from "./types/index.js";
+} from "./types/index";
 /**
  * Functions needed:
  * - Helper function that picks an activity and returns the amount of players required.

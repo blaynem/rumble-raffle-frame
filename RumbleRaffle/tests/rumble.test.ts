@@ -1,12 +1,12 @@
-import RumbleGame, { defaultSetup } from "../rumble.js";
+import RumbleGame, { defaultSetup } from "../rumble";
 import type {
   ActivityLogType,
   RoundActivityLogType,
   SetupType,
   WinnerLogType,
-} from "../types/index.js";
-import { TEST_ACTIVITIES } from "./test_constants.js";
-import * as common from "../common.js";
+} from "../types/index";
+import { TEST_ACTIVITIES } from "./test_constants";
+import * as common from "../common";
 
 const player1 = { id: "1", name: "player-1" };
 const player2 = { id: "2", name: "player-2" };

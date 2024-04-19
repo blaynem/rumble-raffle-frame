@@ -1,12 +1,12 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { defaultActivities } from "../RumbleRaffle/activity_examples/default_activities.js";
-import { addUser } from "../api/utils/database/users.js";
+import { defaultActivities } from "../RumbleRaffle/activity_examples/default_activities";
+import { addUser } from "../app/api/utils/database/users";
 import {
   BLAYNE_EVM_ADDRESS,
   BLAYNE_FID,
   DEGEN_CONTRACT,
-} from "../api/constants.js";
-import { createOrUpdateRoom } from "../api/utils/database/rooms.js";
+} from "../app/api/constants";
+import { createOrUpdateRoom } from "../app/api/utils/database/rooms";
 
 const prisma = new PrismaClient();
 async function main() {

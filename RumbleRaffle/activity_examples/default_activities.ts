@@ -1,4 +1,4 @@
-import { ActivitiesObjType } from "../types/activity.js";
+import { ActivitiesObjType } from "../types/activity";
 
 // I hate that I did this.
 export const defaultActivities: ActivitiesObjType = {

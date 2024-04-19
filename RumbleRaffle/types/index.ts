@@ -1,25 +1,25 @@
-import type { RumbleInterface, SetupType } from "./rumble.js";
-import type { PlayerType, allPlayersObj } from "./player.js";
+import type { RumbleInterface, SetupType } from "./rumble";
+import type { allPlayersObj, PlayerType } from "./player";
 import type {
   ActivitiesObjType,
-  ActivityTypes,
   ActivityLogType,
-  RoundActivityLogType,
-  WinnerLogType,
+  ActivityTypes,
   GameActivityLogsType,
   GameEndType,
-} from "./activity.js";
+  RoundActivityLogType,
+  WinnerLogType,
+} from "./activity";
 
 export type {
-  RumbleInterface,
-  SetupType,
-  PlayerType,
-  allPlayersObj,
   ActivitiesObjType,
-  ActivityTypes,
   ActivityLogType,
-  RoundActivityLogType,
-  WinnerLogType,
+  ActivityTypes,
+  allPlayersObj,
   GameActivityLogsType,
   GameEndType,
+  PlayerType,
+  RoundActivityLogType,
+  RumbleInterface,
+  SetupType,
+  WinnerLogType,
 };

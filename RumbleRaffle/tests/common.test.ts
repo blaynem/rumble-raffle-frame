@@ -3,10 +3,10 @@ import {
   getPlayersFromIds,
   getPlayersFromIndex,
   pickActivity,
-} from "../common.js";
-import type { ActivityTypes, allPlayersObj } from "../types/index.js";
-import { TEST_ACTIVITIES } from "./test_constants.js";
-import * as common from "../common.js";
+} from "../common";
+import type { ActivityTypes, allPlayersObj } from "../types/index";
+import { TEST_ACTIVITIES } from "./test_constants";
+import * as common from "../common";
 
 describe("common functions", () => {
   test("getPlayersFromIndex", () => {

@@ -38,14 +38,26 @@ npm install
 npx supabase start
 ```
 
-2. Start the Rumble Frame
+2. Start the Frog Dev mode + Rumble Frame
+You'll need two separate terminals for this.
+
+Start the dev server
 ```bash
 npm run dev
 ```
 
-3. Start Ngrok if needed
+Start the frog frame, then past in your localhost link
 ```bash
-ngrok http http://localhost:5173
+npm run dev:frog
+```
+
+
+
+3. If testing with Warpcast Frame Validator
+Note: The localhost port depends on what `npm run dev` outputs.
+
+```bash
+ngrok http http://localhost:3000
 ```
 
 ### Supabase / Prisma

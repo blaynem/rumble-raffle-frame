@@ -10,7 +10,7 @@ import type {
   RoundActivityLogType,
   RumbleInterface,
   WinnerLogType,
-} from "./types/index.js";
+} from "./types/index";
 import {
   doActivity,
   doesEventOccur,
@@ -18,8 +18,8 @@ import {
   getPlayersFromIds,
   getRandomNumber,
   pickActivity,
-} from "./common.js";
-import type { SetupType } from "./types/index.js";
+} from "./common";
+import type { SetupType } from "./types/index";
 
 /**
  * TODO:

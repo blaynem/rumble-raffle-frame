@@ -1,4 +1,4 @@
-import type { ActivitiesObjType } from "../types/index.js";
+import type { ActivitiesObjType } from "../types/index";
 
 export const TEST_ACTIVITIES: ActivitiesObjType = {
   PVP: [

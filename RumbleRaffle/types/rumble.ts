@@ -5,7 +5,7 @@ import type {
   GameActivityLogsType,
   GameEndType,
   PlayerType,
-} from "./index.js";
+} from "./index";
 
 /**
  * Constructor typings
