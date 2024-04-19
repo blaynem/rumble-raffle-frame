@@ -1,4 +1,29 @@
+### TODOs
 
+- "Entire Game" logs view
+
+## NOTES SETTING UP DB for CRON job
+- May have to set the extension for pg_net and pg_cron
+- May have to push the `.env` to the supabase using one of the commands in the package.json
+
+This is how we schedule the game to run hourly. Replace `project-ref` and `YOUR_ANON_KEY` with correct values.
+```sql
+-- select cron.unschedule('invoke-function-every-minute');
+
+SELECT
+  cron.schedule(
+    'invoke-rumble-start-every-hour',
+    '0 * * * *', -- at the top of every hour
+    $$
+    select
+      net.http_post(
+          url:='https://project-ref.supabase.co/functions/v1/run-rumble-hourly',
+          headers:='{"Content-Type": "application/json", "Authorization": "Bearer YOUR_ANON_KEY"}'::jsonb,
+          body:=concat('{"time": "', now(), '"}')::jsonb
+      ) as request_id;
+    $$
+  );
+```
 
 ## Dev flow
 
