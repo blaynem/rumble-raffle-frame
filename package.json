@@ -6,7 +6,11 @@
     "build": "frog vercel-build",
     "dev": "frog dev",
     "deploy": "vercel",
-    "typecheck": "tsc -p tsconfig.json --noEmit --incremental false"
+    "typecheck": "tsc -p tsconfig.json --noEmit --incremental false",
+    "deploy:functions": "npx supabase functions deploy --project-ref memyczfdmuqjqgiyuowg",
+    "deploy:functions:local": "npx supabase functions serve",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:generate": "prisma generate"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "date-fns";
+import { differenceInMinutes } from "date-fns/differenceInMinutes";
 
 // Rumbles start every hour on the hours
 export const timeUntilNextRumble = () => {
@@ -7,7 +7,7 @@ export const timeUntilNextRumble = () => {
   nextHour.setHours(now.getHours() + 1);
   nextHour.setMinutes(0);
   nextHour.setSeconds(0);
-  return formatDistanceToNow(nextHour);
+  return `Next Rumble in ${differenceInMinutes(nextHour, now)} mins.`;
 };
 
 export const minifyAddress = (address: string): string =>

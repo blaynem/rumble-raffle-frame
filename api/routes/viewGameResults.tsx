@@ -22,13 +22,17 @@ const ViewResultsSuccess = ({
   winners,
   participated,
   currentEntrants,
+  noResultsFound,
+  resultsEntrantsCount,
 }: {
   /**
    * List of winners
    */
-  winners: string[] | null;
+  winners: string[];
   participated?: SpecificPlayerLogsFrame;
   currentEntrants: number;
+  resultsEntrantsCount: number;
+  noResultsFound?: boolean;
 }) => (
   <Box grow background="rumbleBgDark" color="rumbleNone" padding={"16"}>
     <Columns gap="8">
@@ -38,7 +42,7 @@ const ViewResultsSuccess = ({
       <Column>
         <Box grow alignContent="center" alignVertical="center">
           <Text>
-            Next Rumble in {timeUntilNextRumble()}.{" "}
+            {timeUntilNextRumble()}{" "}
             {currentEntrants && `Entrants: ${currentEntrants}`}
           </Text>
         </Box>
@@ -76,53 +80,51 @@ const ViewResultsSuccess = ({
     >
       <Box width="100%">
         <Box alignItems="center">
-          <Text size="24" color="rumblePrimary">
-            Results
-          </Text>
+          <Box flexDirection="row" alignVertical="center" gap="8">
+            <Text size="24" color="rumblePrimary">
+              Top 5
+            </Text>
+            <Text size="16">(of {resultsEntrantsCount})</Text>
+          </Box>
         </Box>
         <Divider direction="horizontal" color={"rumblePrimary"} />
-        <Columns gap="8">
-          <Column width="3/7">
-            {winners ? (
-              winners.map((winner, i) => (
-                <Box
-                  {...(i + 1 === participated?.placement && {
-                    fontWeight: "700",
-                    color: "rumblePrimary",
-                    backgroundColor: "rumbleOutline",
-                  })}
-                >
-                  <Text size="16">
-                    {i + 1}: {winner}
+        {noResultsFound ? (
+          <Text>No Results Found</Text>
+        ) : (
+          <Columns gap="8">
+            <Column width="3/7">
+              {winners.length > 0 &&
+                winners.map((winner, i) => (
+                  <Box
+                    {...(i + 1 === participated?.placement && {
+                      fontWeight: "700",
+                      color: "rumblePrimary",
+                      backgroundColor: "rumbleOutline",
+                    })}
+                  >
+                    <Text size="16">
+                      {i + 1}: {winner}
+                    </Text>
+                  </Box>
+                ))}
+            </Column>
+            <Column overflow="hidden">
+              {participated?.activityDetails.map((activity) => {
+                let emoji: string = "";
+                if (activity.type === "REVIVE") emoji = "🙏";
+                if (activity.type === "PVP") emoji = "⚔️";
+                if (activity.type === "PVE") emoji = "🏕️";
+                if (!activity.survived) emoji = "💀";
+                return (
+                  <Text>
+                    {emoji} {activity.description}
                   </Text>
-                </Box>
-              ))
-            ) : (
-              <Text size="16">
-                This is where i'd put my results... If I had any!!!
-              </Text>
-            )}
-          </Column>
-          <Column overflow="hidden">
-            {participated?.activityDetails.map((activity) => {
-              let emoji: string = "";
-              if (activity.type === "REVIVE") emoji = "🙏";
-              if (activity.type === "PVP") emoji = "⚔️";
-              if (activity.type === "PVE") emoji = "🏕️";
-              if (!activity.survived) emoji = "💀";
-              return (
-                <Text>
-                  {emoji} {activity.description}
-                </Text>
-              );
-            })}
-            {!participated && (
-              <Text>
-                This is where you'd see results.. if you clicked join!
-              </Text>
-            )}
-          </Column>
-        </Columns>
+                );
+              })}
+              {!participated && <Text>This is where you'd see results..</Text>}
+            </Column>
+          </Columns>
+        )}
       </Box>
     </Box>
   </Box>
@@ -151,13 +153,17 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
       : activeRoom.last_game_params_id;
     if (!resultsParamId) throw new Error("No previous room found");
 
-    const pastGameData =
+    const resultsGameParams =
       resultsParamId === activeRoom.params_id
         ? activeRoom.Params
         : await getRoomParamsByParamsId(resultsParamId);
 
-    if (!pastGameData) throw new Error("No past game data found");
-    const winners = await getPlayersByIds(pastGameData?.winners);
+    if (!resultsGameParams) throw new Error("No past game data found");
+    const resultsPlayerCount = await getPlayerCount(resultsGameParams.id);
+    const resultsEntrantsCount =
+      ("result" in resultsPlayerCount && resultsPlayerCount.result) || 0;
+
+    const winners = await getPlayersByIds(resultsGameParams?.winners);
 
     let address = "";
     let participated: SpecificPlayerLogsFrame | undefined;
@@ -174,6 +180,7 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
           participated={participated}
           winners={winners.map((w) => w.name || "Unknown")}
           currentEntrants={currentEntrants}
+          resultsEntrantsCount={resultsEntrantsCount}
         />
       ),
       intents: intents,
@@ -181,7 +188,14 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
   } catch (error) {
     console.error("viewGameResultsFrame error: ", error);
     return frameContext.res({
-      image: <ViewResultsSuccess winners={null} currentEntrants={0} />,
+      image: (
+        <ViewResultsSuccess
+          noResultsFound
+          resultsEntrantsCount={0}
+          winners={[]}
+          currentEntrants={0}
+        />
+      ),
       intents: intents,
     });
   }

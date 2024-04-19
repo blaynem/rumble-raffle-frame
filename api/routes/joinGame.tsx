@@ -26,8 +26,7 @@ const JoinedGameSuccess = ({
     <VStack>
       <BETAHeading />
       <Text>
-        Next Rumble starts in {timeUntilNextRumble()}.{" "}
-        {entrantCount && `Entrants: ${entrantCount}`}
+        {timeUntilNextRumble()} {entrantCount && `Entrants: ${entrantCount}`}
       </Text>
       <Box flexDirection="row" gap={"2"}>
         <Text>Joined with</Text>
