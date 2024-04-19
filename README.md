@@ -78,6 +78,7 @@ To seed the database, run the following command:
 ```bash
 npx prisma db seed
 ```
+Note: This is automatically run when you run `npx prisma migrate dev`, so we don't need to run it locally.
 
 
 ### Rumble Frame Start

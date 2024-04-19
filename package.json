@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bext build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "dev": "next dev",
     "dev:frog": "frog dev",
     "deploy": "vercel",
@@ -29,6 +29,7 @@
     "react-dom": "^18",
     "next": "14.1.0",
     "uuid": "^9.0.1",
+    "prisma": "^5.12.1",
     "viem": "^2.9.16"
   },
   "devDependencies": {
@@ -37,7 +38,6 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "prisma": "^5.12.1",
     "supabase": "^1.157.2",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",

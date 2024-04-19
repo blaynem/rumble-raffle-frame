@@ -9,13 +9,13 @@ import { attachRoutes } from "../routes";
 import { vars } from "../utils/ui";
 import { attachWebHooks } from "../webhooks";
 
-export const publicClicent = createPublicClient({
+const publicClicent = createPublicClient({
   chain: base,
   transport: http(),
 });
 
 // Needs the name `app` otherwise frog gets ornery.
-export const app = new Frog({
+const app = new Frog({
   assetsPath: "/",
   basePath: "/api",
   // Supply a Hub to enable frame verification.
