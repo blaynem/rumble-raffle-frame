@@ -8,9 +8,11 @@
     "deploy": "vercel",
     "typecheck": "tsc -p tsconfig.json --noEmit --incremental false",
     "deploy:functions": "npx supabase functions deploy --project-ref memyczfdmuqjqgiyuowg",
-    "deploy:functions:local": "npx supabase functions serve",
+    "deploy:functions:local": "npx supabase functions serve --env-file ./supabase/.env",
     "prisma:deploy": "prisma migrate deploy",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "supabase:set-secrets": "npx supabase secrets set --env-file ./supabase/.env --project-ref memyczfdmuqjqgiyuowg",
+    "supabase:secrets-list": "npx supabase secrets list --project-ref memyczfdmuqjqgiyuowg"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

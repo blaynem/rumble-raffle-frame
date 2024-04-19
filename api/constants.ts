@@ -6,6 +6,10 @@ export const TARGET_ROUTES = {
   HOW_IT_WORKS: "/howItWorks",
 };
 
+export const WEBHOOK_ROUTES = {
+  START_GAME: "/webhooks/startGame",
+};
+
 // EVM addresses
 export const DEGEN_CONTRACT = "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed"
   .toLowerCase();

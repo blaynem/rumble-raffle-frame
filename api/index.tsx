@@ -7,6 +7,7 @@ import { base } from "viem/chains";
 import { attachRoutes } from "./routes/index.js";
 import { pinata } from "frog/hubs";
 import { vars } from "./utils/ui.js";
+import { attachWebHooks } from "./webhooks/index.js";
 
 export const publicClicent = createPublicClient({
   chain: base,
@@ -27,6 +28,7 @@ export const app = new Frog({
 
 // Attach the routes
 attachRoutes(app);
+attachWebHooks(app);
 
 // @ts-ignore
 const isEdgeFunction = typeof EdgeFunction !== "undefined";
