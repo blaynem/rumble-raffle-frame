@@ -109,7 +109,8 @@ export const addUserToGameFlow = async ({
 const joinGameFrame: FrameHandler = async (frameContext) => {
   try {
     // If we don't have a verified user, we show the error message.
-    if (!frameContext.verified || !frameContext.frameData) {
+    // if (!frameContext.verified || !frameContext.frameData) {
+    if (!frameContext.frameData) {
       throw new Error("User not verified");
     }
 

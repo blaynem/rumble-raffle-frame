@@ -190,7 +190,8 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
     let participated: SpecificPlayerLogsFrame | undefined;
     // TODO: Make a fetch to the results API.
     // If we get the users address, we add them to the game.
-    if (frameContext.verified && frameContext.frameData) {
+    // if (frameContext.verified && frameContext.frameData) {
+    if (frameContext.frameData) {
       address = await getConnectedAddressForUser(frameContext.frameData.fid);
       participated = await getPlayersGameLogs(resultsParamId, address);
     }
