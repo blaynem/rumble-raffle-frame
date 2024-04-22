@@ -104,7 +104,7 @@ export default function PageIndex() {
             What sort of events can i expect to happen?
           </h2>
           <p className="dark:text-rumbleNone text-rumbleOutline">PVE</p>
-          <ul className="pl-8 list-disc">
+          <ul className="pl-8 list-disc  dark:text-rumbleNone text-rumbleOutline">
             <li>PLAYER_0 fell head first into a toothpick.</li>
             <li>
               PLAYER_0 was pecked to death in a 'The Birds'-style flock attack.
@@ -112,7 +112,7 @@ export default function PageIndex() {
             <li>PLAYER_0 was hit with lag and noclipped into a boulder.</li>
           </ul>
           <p className="dark:text-rumbleNone text-rumbleOutline">PVP</p>
-          <ul className="pl-8 list-disc">
+          <ul className="pl-8 list-disc  dark:text-rumbleNone text-rumbleOutline">
             <li>
               PLAYER_0 baked PLAYER_1 some special brownies that exploded upon
               consumption.
@@ -123,7 +123,7 @@ export default function PageIndex() {
             </li>
           </ul>
           <p className="dark:text-rumbleNone text-rumbleOutline">REVIVE</p>
-          <ul className="pl-8 list-disc">
+          <ul className="pl-8 list-disc  dark:text-rumbleNone text-rumbleOutline">
             <li>
               The population of heaven just decreased, because PLAYER_0 is back!
             </li>
