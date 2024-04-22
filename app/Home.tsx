@@ -42,6 +42,17 @@ export default function PageIndex() {
           Welcome to Rumble Raffle!
         </h1>
         <section className="md:px-40 sm:px-8">
+          <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
+            Rumble Raffle is currently only playable via a{" "}
+            <span className="underline">Farcaster Frame.</span> Please visit the{" "}
+            <a
+              className=" dark:text-rumbleSecondary text-rumblePrimary"
+              href="https://warpcast.com/~/channel/rumbleraffle"
+            >
+              Rumble Raffle
+            </a>{" "}
+            channel to play today
+          </p>
           <h2 className="uppercase mb-2 text-xl dark:text-rumbleSecondary text-rumblePrimary">
             What the heck is this?
           </h2>
@@ -85,15 +96,15 @@ export default function PageIndex() {
             Where the heck can I learn more?
           </h2>
           <p className="dark:text-rumbleNone text-rumbleOutline">
-            The best place to find more information would either be the discord,
-            or the white paper. You can also reach us on twitter.
+            The best place to find more information would be on the warpcaster
+            channel itself.
           </p>
           <ol className="mb-8 dark:text-rumbleNone text-rumbleOutline">
             <li>
               <a
                 rel="noreferrer noopener"
                 target="_blank"
-                href={"https://warpcast.com/drilkmops/0x5b5aa01b"}
+                href={"https://warpcast.com/~/channel/rumbleraffle"}
                 className="uppercase dark:text-rumbleSecondary text-rumblePrimary"
               >
                 Warpcaster
@@ -139,14 +150,15 @@ export default function PageIndex() {
             Have some events you'd like to suggest?
           </h2>
           <p className="dark:text-rumbleNone text-rumbleOutline">
-            If you'd like to suggest some more events, reach out to{" "}
+            If you'd like to suggest some more events, you can make a suggestion
+            on the warpcast{" "}
             <a
               className=" dark:text-rumbleSecondary text-rumblePrimary"
-              href="https://warpcast.com/drilkmops"
+              href="https://warpcast.com/~/channel/rumbleraffle"
             >
-              drilkmops
+              Rumble Raffle
             </a>{" "}
-            on warpcast!
+            channel!
           </p>
         </section>
       </div>
