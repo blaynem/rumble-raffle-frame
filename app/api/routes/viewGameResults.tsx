@@ -26,20 +26,22 @@ const ShowActivityDetails = ({
   participated?: SpecificPlayerLogsFrame;
 }) => {
   if (!participated) return <Box />;
-  // Needed otherwise we return "undefined" since there are no texts to return.
-  if (participated.activityDetails.length < 1) return <Box />;
-  return participated.activityDetails.map((activity) => {
-    let emoji: string = "";
-    if (activity.type === "REVIVE") emoji = "🙏";
-    if (activity.type === "PVP") emoji = "⚔️";
-    if (activity.type === "PVE") emoji = "🏕️";
-    if (!activity.survived) emoji = "💀";
-    return (
-      <Text>
-        {emoji} {activity.description}
-      </Text>
-    );
-  });
+  return (
+    <Box>
+      {participated.activityDetails.map((activity) => {
+        let emoji: string = "";
+        if (activity.type === "REVIVE") emoji = "🙏";
+        if (activity.type === "PVP") emoji = "⚔️";
+        if (activity.type === "PVE") emoji = "🏕️";
+        if (!activity.survived) emoji = "💀";
+        return (
+          <Text>
+            {emoji} {activity.description}
+          </Text>
+        );
+      })}
+    </Box>
+  );
 };
 
 const ViewResultsSuccess = ({

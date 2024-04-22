@@ -124,7 +124,10 @@ export const getPlayersGameLogs = async (
         activityParticipantIndex,
       );
       const killCount = log.Activity.killCounts[activityParticipantIndex];
-      totalKillCount += +killCount;
+      if (killCount) {
+        // Converts decimal to number
+        totalKillCount += +killCount;
+      }
       return {
         survived,
         round_counter: log.round_counter,
