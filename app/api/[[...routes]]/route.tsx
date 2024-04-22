@@ -18,6 +18,7 @@ const publicClicent = createPublicClient({
 const app = new Frog({
   assetsPath: "/",
   basePath: "/api",
+  browserLocation: "/",
   // Supply a Hub to enable frame verification.
   hub: pinata(),
   // Inject the ui
