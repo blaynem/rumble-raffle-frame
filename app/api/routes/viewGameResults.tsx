@@ -25,7 +25,9 @@ const ShowActivityDetails = ({
 }: {
   participated?: SpecificPlayerLogsFrame;
 }) => {
-  if (!participated) return <></>;
+  if (!participated) return <Box />;
+  // Needed otherwise we return "undefined" since there are no texts to return.
+  if (participated.activityDetails.length < 1) return <Box />;
   return participated.activityDetails.map((activity) => {
     let emoji: string = "";
     if (activity.type === "REVIVE") emoji = "🙏";
@@ -71,7 +73,7 @@ const ViewResultsSuccess = ({
       </Column>
     </Columns>
     {!participated ? (
-      <></>
+      <Box />
     ) : (
       <Box alignItems="center">
         <Box flexDirection="row">
@@ -82,7 +84,7 @@ const ViewResultsSuccess = ({
           </Text>
           <Spacer size="8" />
           {participated.totalKillCount <= 0 ? (
-            <></>
+            <Box />
           ) : (
             <Box flexDirection="row">
               <Text>Kills: </Text>
@@ -94,7 +96,7 @@ const ViewResultsSuccess = ({
           )}
         </Box>
         {participated.placement !== 1 ? (
-          <></>
+          <Box />
         ) : (
           <Text weight="700">Winner winner, chicken dinner!</Text>
         )}
@@ -139,7 +141,7 @@ const ViewResultsSuccess = ({
             <Column overflow="hidden">
               <ShowActivityDetails participated={participated} />
               {participated ? (
-                <></>
+                <Box />
               ) : (
                 <Text>This is where you'd see results..</Text>
               )}
@@ -190,8 +192,7 @@ const viewGameResultsFrame: FrameHandler = async (frameContext) => {
     let participated: SpecificPlayerLogsFrame | undefined;
     // TODO: Make a fetch to the results API.
     // If we get the users address, we add them to the game.
-    // if (frameContext.verified && frameContext.frameData) {
-    if (frameContext.frameData) {
+    if (frameContext.verified && frameContext.frameData) {
       address = await getConnectedAddressForUser(frameContext.frameData.fid);
       participated = await getPlayersGameLogs(resultsParamId, address);
     }
