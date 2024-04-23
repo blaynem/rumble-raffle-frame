@@ -13,10 +13,11 @@ export type GetAllGameLogsForSlug = {
 export async function GET(
   req: NextRequest,
 ): Promise<NextResponse<GetAllGameLogsForSlug>> {
-  try {
-    const slug = req.nextUrl.searchParams.get("slug");
-    const paramId = req.nextUrl.searchParams.get("paramId");
+  // These can't be inside the try block because.. next.js reasons.
+  const slug = req.nextUrl.searchParams.get("slug");
+  const paramId = req.nextUrl.searchParams.get("paramId");
 
+  try {
     const allParamIds = await getAllParamIdsFromSlug(slug!);
     if ("error" in allParamIds) {
       throw new Error("There are no rooms matching this slug: " + slug);
