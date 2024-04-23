@@ -2,43 +2,16 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { usePreferences } from "./containers/preferences";
-import RumbleRoom, { RoomDataFetchType } from "./components/displayRoom";
-import { GetAllGameLogsForSlug } from "./api/raffle/route";
-import { BASE_WEB_URL } from "./api/constants";
-
-const fetchCurrentRaffleData = async (
-  slug: string
-): Promise<GetAllGameLogsForSlug> => {
-  const raffleFetchData = await fetch(
-    `${BASE_WEB_URL}/api/raffle?slug=${slug}`
-  );
-  const data = (await raffleFetchData.json()) as GetAllGameLogsForSlug;
-
-  return data;
-};
 
 const pageTitle = `Rumble Raffle`;
 export default function PageIndex() {
   const { preferences } = usePreferences();
 
   const [darkMode, setDarkMode] = useState(false);
-  const [gameState, setGameState] = useState<RoomDataFetchType | null>(null);
 
   useEffect(() => {
     setDarkMode(preferences?.darkMode);
   }, [preferences?.darkMode]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCurrentRaffleData("default");
-      if ("error" in data) {
-        return setGameState(null);
-      }
-      setGameState(data.latestGame);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className={`${darkMode ? "dark" : "light"}`}>
@@ -52,7 +25,7 @@ export default function PageIndex() {
       </Head>
       <div
         className="p-8 dark:bg-black bg-rumbleBgLight w-full overflow-auto scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark"
-        style={{ height: "calc(100vh - 58px)" }}
+        style={{ height: "calc(100vh - 46px)" }}
       >
         <h1 className="uppercase font-medium mt-6 mb-12 text-2xl text-center dark:text-rumbleSecondary text-rumblePrimary">
           Welcome to Rumble Raffle!
@@ -177,7 +150,6 @@ export default function PageIndex() {
             channel!
           </p>
         </section>
-        <section>{gameState && <RumbleRoom roomData={gameState} />}</section>
       </div>
     </div>
   );

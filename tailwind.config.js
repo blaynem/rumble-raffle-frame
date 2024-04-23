@@ -22,9 +22,7 @@ export default {
       scrollbar: ["dark"],
     },
   },
-  // plugins: [
-  //   require('tailwind-scrollbar')
-  // ],
+  plugins: [require("tailwind-scrollbar")],
   safelist: [
     "whitelisted",
     {

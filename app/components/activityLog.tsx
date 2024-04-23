@@ -7,7 +7,7 @@ import "react-popper-tooltip/dist/styles.css";
 import { ClickToCopyPopper } from "./Popper";
 import HikingOutlined from "@mui/icons-material/HikingOutlined";
 import { PlayerType } from "@/RumbleRaffle/types";
-import { ActivityLogClientDisplay } from "./displayRoom";
+import { ActivityLogClientDisplay } from "../gameLogs/displayRoom";
 
 const iconClass = "h-5 w-5 dark:stroke-rumbleNone block";
 const iconClassMui = "h-5 w-5 dark:fill-rumbleNone fill-rumbleOutline block";
@@ -252,7 +252,7 @@ export const DisplayKillCount = ({
       <div className="dark:text-rumbleSecondary text-rumblePrimary uppercase text-lg font-medium leading-7 mb-2">
         Kill Count
       </div>
-      <ul className="max-h-80 overflow-auto scrollbar-thin scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgLight">
+      <ul className="max-h-80 overflow-auto scrollbar-thin scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark">
         {totalKillCounts.length < 1 ? (
           <li className="mb-0 dark:text-rumbleNone text-rumbleOutline text-base font-normal">
             No kills yet.

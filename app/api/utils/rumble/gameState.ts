@@ -1,7 +1,7 @@
 import { RumbleRaffle } from "../../../../RumbleRaffle/index";
 import { getAllActivities } from "../database/activities";
 import { prisma } from "../database/client";
-import { getAllPlayersOfRoom } from "../database/players";
+import { getAllPlayersOfRoomParamsId } from "../database/players";
 import {
   createOrUpdateRoom,
   CreateOrUpdateRoomData,
@@ -34,7 +34,7 @@ export const runRumbleGame = async (
     const activities = await getAllActivities();
 
     // Get all the players
-    const players = await getAllPlayersOfRoom(roomData.slug);
+    const players = await getAllPlayersOfRoomParamsId(roomData.params_id);
     const rumble = new RumbleRaffle({
       activities,
       params: {

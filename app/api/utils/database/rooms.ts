@@ -1,10 +1,11 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "./client";
+
+import { PlayerType } from "@/RumbleRaffle/types";
 import {
   ActivityLogClientDisplay,
   RoomDataFetchType,
-} from "@/app/components/displayRoom";
-import { PlayerType } from "@/RumbleRaffle/types";
+} from "@/app/gameLogs/displayRoom";
 
 // Used for a single round within a game
 export type RoundsType =

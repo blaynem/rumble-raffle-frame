@@ -1,4 +1,4 @@
-import { RoomDataFetchType } from "@/app/components/displayRoom";
+import { RoomDataFetchType } from "@/app/gameLogs/displayRoom";
 import {
   getAllParamIdsFromSlug,
   getGameLogByParamsId,
@@ -15,21 +15,22 @@ export async function GET(
 ): Promise<NextResponse<GetAllGameLogsForSlug>> {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
-    const paramId = await getAllParamIdsFromSlug(slug!);
-    if ("error" in paramId) {
+    const paramId = req.nextUrl.searchParams.get("paramId");
+
+    const allParamIds = await getAllParamIdsFromSlug(slug!);
+    if ("error" in allParamIds) {
       throw new Error("There are no rooms matching this slug: " + slug);
     }
     // Get the last
-    const latestResult = await getGameLogByParamsId(paramId.data[0]);
+    const _paramQuery = paramId ? paramId : allParamIds.data[0];
+    const latestResult = await getGameLogByParamsId(_paramQuery);
     if ("error" in latestResult) {
       throw new Error(
-        `Couldn't find latest game state for slug: ${slug}, paramId: ${
-          paramId.data[0]
-        }`,
+        `Couldn't find latest game state for slug: ${slug}, paramId: ${_paramQuery}`,
       );
     }
     return NextResponse.json({
-      allParamIds: paramId.data,
+      allParamIds: allParamIds.data,
       latestGame: latestResult.data,
     });
   } catch (e) {

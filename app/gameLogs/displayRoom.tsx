@@ -3,12 +3,13 @@ import React, { useState, useEffect } from "react";
 import { usePreferences } from "../containers/preferences";
 import { Environment, Prisma } from "@prisma/client";
 import { PlayerType } from "@/RumbleRaffle/types";
-import Entrants from "./entrants";
+import Entrants from "../components/entrants";
 import {
   DisplayActivityLogs,
   DisplayKillCount,
   DisplayWinners,
-} from "./activityLog";
+} from "../components/activityLog";
+import DisplayPastRooms from "../components/PastRoomSelections";
 
 export interface ActivityLogClientDisplay {
   activity_id: Prisma.RoomParamsCreateInput["id"];
@@ -40,11 +41,13 @@ export interface RoomDataFetchType {
   totalKillCounts: (PlayerType & { killCount: number })[];
 }
 
-export type ServerSidePropsType = {
-  roomData: RoomDataFetchType;
-};
-
-const RumbleRoom = ({ roomData }: { roomData: RoomDataFetchType | null }) => {
+const RumbleRoom = ({
+  allParamIds,
+  roomData,
+}: {
+  allParamIds: string[];
+  roomData: RoomDataFetchType | null;
+}) => {
   const { preferences } = usePreferences();
   const [darkMode, setDarkMode] = useState(false);
   //   setTimeToGameStart(timeToStart);
@@ -56,10 +59,7 @@ const RumbleRoom = ({ roomData }: { roomData: RoomDataFetchType | null }) => {
   if (!roomData) {
     return (
       <div className={`${darkMode ? "dark" : "light"}`}>
-        <div
-          className="flex justify-center dark:bg-rumbleOutline bg-rumbleBgLight"
-          style={{ height: "calc(100vh - 58px)" }}
-        >
+        <div className="flex justify-center dark:bg-rumbleOutline bg-rumbleBgLight">
           <div className="w-fit pt-20">
             <p className="text-lg dark:text-rumbleSecondary text-rumblePrimary">
               Oops...
@@ -79,10 +79,7 @@ const RumbleRoom = ({ roomData }: { roomData: RoomDataFetchType | null }) => {
   // Should refactor this so it all just go
   return (
     <div className={`${darkMode ? "dark" : "light"}`}>
-      <div
-        className="dark:bg-black bg-rumbleBgLight overflow-auto sm:overflow-hidden"
-        style={{ height: "calc(100vh - 58px)" }}
-      >
+      <div className="dark:bg-black bg-rumbleBgLight overflow-auto sm:overflow-hidden">
         <h2 className="dark:border-rumbleBgLight border-black text-center p-4 text-xl uppercase dark:bg-rumbleSecondary bg-rumblePrimary dark:text-black text-rumbleNone border-b-2">
           Viewing a past game
         </h2>
@@ -90,8 +87,12 @@ const RumbleRoom = ({ roomData }: { roomData: RoomDataFetchType | null }) => {
           {/* Left Side */}
           <div
             className="ml-6 lg:ml-20 md:ml-6 sm:ml-6 pr-6 mr-2 pt-10 overflow-auto scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark"
-            style={{ height: "calc(100vh - 110px)" }}
+            style={{ height: "calc(100vh - 108px)" }}
           >
+            <DisplayPastRooms
+              all_param_ids={allParamIds}
+              selected_param_id={roomData.params.id}
+            />
             <Entrants entrants={roomData.players} />
             <DisplayKillCount
               totalKillCounts={roomData.totalKillCounts}
@@ -101,7 +102,7 @@ const RumbleRoom = ({ roomData }: { roomData: RoomDataFetchType | null }) => {
           {/* Right Side */}
           <div
             className="pr-6 lg:pr-20 md:pr-6 sm:pr-6 py-2 flex-1 overflow-auto scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark"
-            style={{ height: "calc(100vh - 110px)" }}
+            style={{ height: "calc(100vh - 108px)" }}
           >
             <div className="my-4 h-6 text-center dark:text-rumbleNone text-rumbleOutline" />
             <div className="flex flex-col items-center max-h-full">

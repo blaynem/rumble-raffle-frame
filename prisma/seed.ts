@@ -169,6 +169,25 @@ async function main() {
   await seedPlayersToRoom(newRoomData.newGamesData.params_id).catch((e) => {
     console.error("---error adding users to game 2", e);
   });
+
+  for (let i = 0; i < 10; i++) {
+    // Repeat another time
+    console.log("----Running game -- ", i);
+    // Run a game.
+    const newRoomDatax = await runRumbleGame(SLUG_NAME).catch((e) => {
+      return { error: e };
+    });
+    if ("error" in newRoomDatax) {
+      console.error("Error running game", newRoomDatax.error);
+      return;
+    }
+
+    console.log("----Seeding players to room", i);
+    // Then potentially seed all the players to the new param id once more?
+    await seedPlayersToRoom(newRoomDatax.newGamesData.params_id).catch((e) => {
+      console.error("---error adding users to game", i, e);
+    });
+  }
 }
 main()
   .then(async () => {

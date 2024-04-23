@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Popover } from "@headlessui/react";
 import { usePreferences } from "../containers/preferences";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/ContrastOutlined";
+import Link from "next/link";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -37,12 +38,18 @@ const Nav = () => {
                 ))
               </span>
             </p>
-            <a
-              href="#pastGames"
-              className="px-4 py-2 uppercase font-medium text-l underline dark:text-rumbleNone text-rumbleOutline"
+            <Link
+              href="/"
+              className="px-4 py-2 uppercase font-medium text-l hover:underline dark:text-rumbleNone text-rumbleOutline"
+            >
+              Home
+            </Link>
+            <Link
+              href="/gameLogs"
+              className="px-4 py-2 uppercase font-medium text-l hover:underline dark:text-rumbleNone text-rumbleOutline"
             >
               Past Games
-            </a>
+            </Link>
           </div>
           <button onClick={setDarkmode} className="mr-6">
             <EmojiEventsOutlinedIcon className="dark:fill-rumbleBgLight fill-rumbleBgDark" />

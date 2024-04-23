@@ -25,7 +25,7 @@ const Entrants = ({
       <div className="dark:text-rumbleSecondary text-rumblePrimary uppercase text-lg font-medium leading-7 mb-2">
         Entrants
       </div>
-      <ul className="max-h-80 overflow-auto scrollbar-thin scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgLight">
+      <ul className="max-h-80 overflow-auto scrollbar-thin scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark">
         {entrants.length < 1 ? (
           <li className="mb-0 dark:text-rumbleNone text-rumbleOutline text-base font-normal">
             {loading ? "Loading.." : "No entrants yet."}
