@@ -170,7 +170,7 @@ async function main() {
     console.error("---error adding users to game 2", e);
   });
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 2; i++) {
     // Repeat another time
     console.log("----Running game -- ", i);
     // Run a game.
