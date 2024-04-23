@@ -102,11 +102,12 @@ export const getUsedDataByFID = async (fid: number): Promise<UsedDataByFID> => {
  * @param fid Farcaster ID
  * @returns The user data
  */
-export const getUserDataByFID = async (fid: number): Promise<{
+export const getUserDataByFID = async (fid: number | string): Promise<{
   username: string;
   address: string;
 }> => {
-  const userData = await getUsedDataByFID(fid);
-  const address = await getConnectedAddressForUser(fid);
+  const _fid = typeof fid === "string" ? parseInt(fid) : fid;
+  const userData = await getUsedDataByFID(_fid);
+  const address = await getConnectedAddressForUser(_fid);
   return { username: userData.data.userDataBody.value, address };
 };
