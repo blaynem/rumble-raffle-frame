@@ -2,13 +2,13 @@ import { Prisma } from "@prisma/client";
 import { GameEndType, PlayerType } from "../../../../RumbleRaffle/types/index";
 
 // The entire games log.
-export type EntireGameLog = {
+type EntireGameLog = {
   rounds: RoundActivityLog[];
   winners: PlayerType[];
 };
 
 // The collection of activities that happens in a given game.
-export type RoundActivityLog = {
+type RoundActivityLog = {
   /**
    * Activities that have happened in this round.
    */
@@ -24,7 +24,7 @@ export type RoundActivityLog = {
 };
 
 // A single activity that happens in a given round.
-export type SingleActivity = {
+type SingleActivity = {
   activity_order: number;
   /**
    * Description of the activity that happens. Ex: "PLAYER_0 drank infected water and died."

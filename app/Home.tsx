@@ -1,18 +1,7 @@
 "use client";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { getFrameMetadata } from "frog/next";
-import type { Metadata } from "next";
 import { usePreferences } from "./containers/preferences";
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   const frameTags = await getFrameMetadata(
-//     `${process.env.VERCEL_URL || "http://localhost:3000"}/api`
-//   );
-//   return {
-//     other: frameTags,
-//   };
-// }
 
 const pageTitle = `Rumble Raffle`;
 export default function PageIndex() {
@@ -36,29 +25,18 @@ export default function PageIndex() {
       </Head>
       <div
         className="p-8 dark:bg-black bg-rumbleBgLight w-full overflow-auto scrollbar-thin dark:scrollbar-thumb-rumbleSecondary scrollbar-thumb-rumblePrimary scrollbar-track-rumbleBgDark"
-        style={{ height: "calc(100vh - 58px)" }}
+        style={{ height: "calc(100vh - 46px)" }}
       >
         <h1 className="uppercase font-medium mt-6 mb-12 text-2xl text-center dark:text-rumbleSecondary text-rumblePrimary">
           Welcome to Rumble Raffle!
         </h1>
         <section className="md:px-40 sm:px-8">
-          <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
-            Rumble Raffle is currently only playable via a{" "}
-            <span className="underline">Farcaster Frame.</span> Please visit the{" "}
-            <a
-              className=" dark:text-rumbleSecondary text-rumblePrimary"
-              href="https://warpcast.com/~/channel/rumbleraffle"
-            >
-              Rumble Raffle
-            </a>{" "}
-            channel to play today
-          </p>
           <h2 className="uppercase mb-2 text-xl dark:text-rumbleSecondary text-rumblePrimary">
             What the heck is this?
           </h2>
           <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
-            Rumble Raffle is a completely randomized, free to play game where
-            players fight to the{" "}
+            Rumble Raffle is a completely randomized game where players fight to
+            the{" "}
             <span className="dark:text-rumbleSecondary text-rumblePrimary">
               (
             </span>
@@ -66,8 +44,28 @@ export default function PageIndex() {
             <span className="dark:text-rumbleSecondary text-rumblePrimary">
               )
             </span>{" "}
-            death to earn RMBLB Tokens. The more players you kill, the more
-            RMBLB tokens you earn.
+            death to earn Rewards. The more players you kill, the greater the
+            Rewards you earn.
+          </p>
+          <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
+            Join by visiting the Rumble Raffle{" "}
+            <a
+              className=" dark:text-rumbleSecondary text-rumblePrimary"
+              href="https://warpcast.com/~/channel/rumbleraffle"
+            >
+              Warpcast channel
+            </a>{" "}
+            and click "Join" in the Farcaster Frame. Make sure your address is
+            verified through Warpcast.
+          </p>
+
+          <h2 className="uppercase mb-2 text-xl dark:text-rumbleSecondary text-rumblePrimary">
+            What the heck are those?
+          </h2>
+          <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
+            {
+              "RMBLB Tokens will be exchanged for a more customized experience! While we iron out all the details, we'll let you accumulate them in the background."
+            }
           </p>
           <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
             While in{" "}
@@ -84,22 +82,13 @@ export default function PageIndex() {
           </p>
 
           <h2 className="uppercase mb-2 text-xl dark:text-rumbleSecondary text-rumblePrimary">
-            What the heck are those?
-          </h2>
-          <p className="mb-8 dark:text-rumbleNone text-rumbleOutline">
-            {
-              "RMBLB Tokens will be exchanged for a more customized experience! While we iron out all the details, we'll let you accumulate them in the background."
-            }
-          </p>
-
-          <h2 className="uppercase mb-2 text-xl dark:text-rumbleSecondary text-rumblePrimary">
             Where the heck can I learn more?
           </h2>
           <p className="dark:text-rumbleNone text-rumbleOutline">
             The best place to find more information would be on the warpcaster
             channel itself.
           </p>
-          <ol className="mb-8 dark:text-rumbleNone text-rumbleOutline">
+          <ol className="mb-8 pl-8 list-disc dark:text-rumbleNone text-rumbleOutline">
             <li>
               <a
                 rel="noreferrer noopener"

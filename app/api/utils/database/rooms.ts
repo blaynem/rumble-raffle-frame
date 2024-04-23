@@ -1,6 +1,34 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "./client";
 
+import { PlayerType } from "@/RumbleRaffle/types";
+import {
+  ActivityLogClientDisplay,
+  RoomDataFetchType,
+} from "@/app/gameLogs/displayRoom";
+
+// Used for a single round within a game
+export type RoundsType =
+  & Pick<
+    Prisma.GameRoundLogsGroupByOutputType,
+    | "activity_id"
+    | "round_counter"
+    | "activity_order"
+    | "participants"
+    | "players_remaining"
+  >
+  & {
+    Activity: Pick<
+      Prisma.ActivitiesGroupByOutputType,
+      | "activityLoser"
+      | "activityWinner"
+      | "killCounts"
+      | "environment"
+      | "amountOfPlayers"
+      | "description"
+    >;
+  };
+
 export const getActiveRoomWithParams = async (room_slug: string) =>
   prisma.rooms.findFirst({
     where: {
@@ -22,8 +50,15 @@ export const getRoomParamsByParamsId = async (params_id: string) =>
     },
   });
 
+export type CreateOrUpdateRoomData = {
+  id: string;
+  slug: string;
+  params_id: string;
+  last_game_params_id: string | null;
+};
+
 /**
- * Method to create or update a room and it's params in the db.
+ * Given a room slug, will either create or update a room with the provided params.
  *
  * Will create a new room if:
  * * A room with given slug is not found
@@ -54,11 +89,31 @@ export const createOrUpdateRoom = async ({
   contract_address: string;
   createdBy: string;
 }): Promise<
-  | { result: { skipped: boolean } } //
+  | {
+    result: {
+      skipped: boolean;
+      roomData: CreateOrUpdateRoomData;
+    };
+  } //
   | { error: any }
 > => {
+  /** If the game has not been started yet, then we will error. So storing this data to pass in the catch. */
+  let knownRoomDataObj: CreateOrUpdateRoomData = {
+    id: "",
+    slug: "",
+    params_id: "",
+    last_game_params_id: null,
+  };
   try {
     const currentRoom = await getActiveRoomWithParams(room_slug);
+    if (currentRoom) {
+      knownRoomDataObj = {
+        id: currentRoom.id,
+        slug: currentRoom.slug,
+        params_id: currentRoom.Params.id,
+        last_game_params_id: currentRoom.last_game_params_id,
+      };
+    }
     const _current_params_id = currentRoom?.Params.id;
     // Lowercase the addresses
     const _createdBy = createdBy.toLowerCase();
@@ -125,13 +180,23 @@ export const createOrUpdateRoom = async ({
       },
     };
 
-    await prisma.rooms.upsert(roomsUpsert);
-    return { result: { skipped: false } };
+    const upsertData = await prisma.rooms.upsert(roomsUpsert);
+    return {
+      result: {
+        skipped: false,
+        roomData: {
+          id: upsertData.id,
+          slug: upsertData.slug,
+          params_id: upsertData.params_id,
+          last_game_params_id: upsertData.last_game_params_id,
+        },
+      },
+    };
   } catch (e: any) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === "P2002") {
         // A room with the slug already exists, but the game is not completed
-        return { result: { skipped: true } };
+        return { result: { skipped: true, roomData: knownRoomDataObj } };
       }
       if (e.code === "P2025") {
         // Contract not found
@@ -147,5 +212,170 @@ export const createOrUpdateRoom = async ({
       error: e,
     });
     return { error: e };
+  }
+};
+
+/**
+ * Returns all game param IDs from a given slug, order from the most recently completed game.
+ * Excludes games that are not completed.
+ *
+ * @param slug
+ */
+export const getAllParamIdsFromSlug = async (
+  slug: string,
+  return_order: "asc" | "desc" = "desc",
+): Promise<{ data: string[] } | { error: any }> => {
+  try {
+    const data = await prisma.roomParams.findMany({
+      where: { room_slug: slug, game_completed: true },
+      select: {
+        id: true,
+        completed_at: true,
+      },
+      orderBy: {
+        completed_at: return_order,
+      },
+    });
+
+    return {
+      data: data.map((param) => param.id),
+    };
+  } catch (error) {
+    console.error("Server: Fetch by slug", error);
+    return {
+      error: "There was an error fetching the data.",
+    };
+  }
+};
+
+/**
+ * Given a params_id, fetches the game log data.
+ */
+export const getGameLogByParamsId = async (
+  params_id: string,
+): Promise<
+  {
+    data: RoomDataFetchType;
+  } | { error: any }
+> => {
+  try {
+    const result = await prisma.roomParams.findUnique({
+      where: {
+        id: params_id,
+      },
+      select: {
+        pve_chance: true,
+        revive_chance: true,
+        id: true,
+        winners: true,
+        Players: {
+          select: {
+            User: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        GameLogs: {
+          include: {
+            Activity: true,
+          },
+        },
+      },
+    });
+    if (result === null) {
+      throw new Error(`Could not find data for params_id: ${params_id}`);
+    }
+    // Create a players map as we'll need to loop through this a few times.
+    const playerMap = new Map<string, PlayerType>();
+    result.Players.forEach((_p) => playerMap.set(_p.User.id, _p.User));
+
+    const winners: PlayerType[] = result.winners.map((_w) =>
+      playerMap.get(_w) as PlayerType
+    );
+
+    // Sort the game logs by round_counter and activity_order
+    const orderedGameLogs = result.GameLogs.sort(
+      (a, b) => {
+        if (a.round_counter !== b.round_counter) {
+          return a.round_counter - b.round_counter;
+        }
+        return a.activity_order - b.activity_order;
+      },
+    );
+
+    // Add a map of total kills by player
+    const totalKillsByPlayer = new Map<string, number>();
+
+    const getParticipantOrder = (_participants: string[]): PlayerType[] =>
+      _participants.map((id) => playerMap.get(id)) as PlayerType[];
+
+    const parsedGameLogs: ActivityLogClientDisplay[] = orderedGameLogs.map(
+      (log) => {
+        // Map the participant ids to the player object
+        const participantOrder = getParticipantOrder(log.participants);
+        const killCounts = log.Activity.killCounts.map((count, index) => ({
+          id: participantOrder[index].id,
+          name: participantOrder[index].name,
+          killCount: +count,
+        }));
+
+        // Add the kill counts to the total kill count
+        for (const _k of killCounts) {
+          if (totalKillsByPlayer.has(_k.id)) {
+            totalKillsByPlayer.set(
+              _k.id,
+              totalKillsByPlayer.get(_k.id)! + _k.killCount,
+            );
+          } else {
+            totalKillsByPlayer.set(_k.id, _k.killCount);
+          }
+        }
+
+        const parsedLog: ActivityLogClientDisplay = {
+          activity_id: log.activity_id,
+          activity_loser: log.Activity.activityLoser.map((index) =>
+            participantOrder[index] as PlayerType
+          ),
+          activity_order: log.activity_order,
+          activity_winner: log.Activity.activityWinner.map((index) =>
+            participantOrder[index] as PlayerType
+          ),
+          amountOfPlayers: log.Activity.amountOfPlayers,
+          description: log.Activity.description,
+          environment: log.Activity.environment,
+          killCounts: killCounts,
+          participants: participantOrder,
+          players_remaining: log.players_remaining,
+          round_counter: log.round_counter,
+        };
+
+        return parsedLog;
+      },
+    );
+
+    const data: RoomDataFetchType = {
+      players: result.Players.map((player) => player.User),
+      params: {
+        id: result.id,
+        pve_chance: result.pve_chance,
+        revive_chance: result.revive_chance,
+      },
+      gameLogs: parsedGameLogs,
+      winners: winners,
+      totalKillCounts: Array.from(totalKillsByPlayer).map((
+        [id, killCount],
+      ) => ({
+        id,
+        name: playerMap.get(id)!.name,
+        killCount,
+      })).sort((a, b) => b.killCount - a.killCount),
+    };
+    return { data };
+  } catch (error) {
+    console.error("Server: Fetch by params_id", error);
+    return { error: "There was an error fetching the game log data." };
   }
 };

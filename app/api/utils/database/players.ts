@@ -18,14 +18,14 @@ export const getPlayerCount = async (
 };
 
 /**
- * Get all players for a given room.
+ * Get all players for a given room params id
  */
-export const getAllPlayersOfRoom = async (
-  slug: string,
+export const getAllPlayersOfRoomParamsId = async (
+  room_params_id: string,
 ) =>
   await prisma.players.findMany({
     where: {
-      slug: slug,
+      room_params_id: room_params_id,
     },
     include: {
       User: true,

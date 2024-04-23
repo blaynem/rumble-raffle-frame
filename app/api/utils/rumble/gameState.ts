@@ -1,17 +1,27 @@
 import { RumbleRaffle } from "../../../../RumbleRaffle/index";
 import { getAllActivities } from "../database/activities";
 import { prisma } from "../database/client";
-import { getAllPlayersOfRoom } from "../database/players";
-import { getActiveRoomWithParams } from "../database/rooms";
+import { getAllPlayersOfRoomParamsId } from "../database/players";
+import {
+  createOrUpdateRoom,
+  CreateOrUpdateRoomData,
+  getActiveRoomWithParams,
+} from "../database/rooms";
 import {
   parseActivityLogForClient,
   parseActivityLogForDbPut,
 } from "./parsingLogs";
 import { selectPayoutFromGameData } from "./parsingPayouts";
 
-export const startGame = async (
+/**
+ * This will run the current game and save all the data to the database.
+ * It will then update the room with a new game params state.
+ */
+export const runRumbleGame = async (
   room_slug: string,
-): Promise<{ success: boolean } | { error: any }> => {
+): Promise<
+  { success: boolean; newGamesData: CreateOrUpdateRoomData } | { error: any }
+> => {
   try {
     // Get the room data + params
     const roomData = await getActiveRoomWithParams(room_slug);
@@ -24,7 +34,7 @@ export const startGame = async (
     const activities = await getAllActivities();
 
     // Get all the players
-    const players = await getAllPlayersOfRoom(roomData.slug);
+    const players = await getAllPlayersOfRoomParamsId(roomData.params_id);
     const rumble = new RumbleRaffle({
       activities,
       params: {
@@ -76,13 +86,29 @@ export const startGame = async (
         Params: {
           update: {
             game_completed: true,
+            completed_at: new Date(),
             game_started: true,
             winners: clientParsedResults.winners.map((w) => w.id),
           },
         },
       },
     });
-    return { success: true };
+
+    const roomdData = await createOrUpdateRoom({
+      room_slug: room_slug,
+      contract_address: roomData.Params.Contract.contract_address,
+      params: {
+        pve_chance: roomData.Params.pve_chance,
+        revive_chance: roomData.Params.revive_chance,
+      },
+      createdBy: roomData.Params.created_by!,
+    });
+
+    if ("error" in roomdData) {
+      throw roomdData.error;
+    }
+
+    return { success: true, newGamesData: roomdData.result.roomData };
   } catch (error) {
     console.error("Error starting game", error);
     return { error };
